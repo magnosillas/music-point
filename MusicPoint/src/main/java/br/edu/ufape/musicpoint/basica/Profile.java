@@ -14,6 +14,15 @@ public class Profile {
         this.biography = biography;
     }
 
+    public boolean updateProfile(){
+        return true;
+    }
+
+    public boolean follow(){
+        return true;
+    }
+
+
     public char getGenre() {
         return genre;
     }

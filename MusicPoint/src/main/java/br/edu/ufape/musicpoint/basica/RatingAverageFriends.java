@@ -1,16 +1,16 @@
 package br.edu.ufape.musicpoint.basica;
 
 public class RatingAverageFriends {
-    private String generalGrade;
+    private String friendlGrade;
 
     public RatingAverageFriends() {
     }
 
-    public String getGeneralGrade() {
-        return generalGrade;
+    public String getFriendlGrade() {
+        return friendlGrade;
     }
 
-    public void setGeneralGrade(String generalGrade) {
-        this.generalGrade = generalGrade;
+    public void setFriendlGrade(String friendlGrade) {
+        this.friendlGrade = friendlGrade;
     }
 }

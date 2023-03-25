@@ -2,9 +2,9 @@ package br.edu.ufape.musicpoint.basica;
 
 import jakarta.persistence.*;
 
+
 @Entity
 public class PostReview {
-    @OneToOne(cascade = CascadeType.ALL)
     private Review review;
     private int likes;
     private int unlikes;
@@ -14,6 +14,17 @@ public class PostReview {
 
     public PostReview() {
     }
+
+    public boolean like(){
+
+        return false;
+    }
+
+    public boolean unlike(){
+
+        return false;
+    }
+
 
     public Review getReview() {
         return review;
