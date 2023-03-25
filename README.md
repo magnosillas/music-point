@@ -1,1 +1,3 @@
-# music-point
+# Music Point
+
+O projeto Music Point foi criado com o objetivo de ser um programa para troca de impressões sobre álbuns musicais. Ele foi desenvolvido como parte da obtenção de nota na disciplina de Programação Orientada a Objetos (POO), sendo parte fundamental na metodologia aplicada em sala de aula para fixação de aprendizagem. O projeto foi criado pelo grupo composto por Magno Sillas, Iasmin Raquel e Leonardo Nunes, sob a orientação do Prof. Igor Medeiros e desenvolvido em Java, utilizando a plataforma Intellij IDEA, e traz consigo o uso de conceitos fundamentais de programação orientada a objetos, como encapsulamento, herança e polimorfismo. Incorporando também conceitos de persistência de dados, permitindo que as informações dos álbuns e dos usuários sejam armazenadas em um banco de dados (SQL). 
