@@ -1,7 +1,10 @@
 package br.edu.ufape.musicpoint.basica;
 
+import jakarta.persistence.Id;
+
 public class Friend {
-    private long idAccount;
+    @Id
+    private Long idAccount;
     private String username;
 
     public Friend() {
