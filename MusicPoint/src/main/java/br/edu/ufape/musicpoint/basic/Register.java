@@ -1,4 +1,4 @@
-package br.edu.ufape.musicpoint.basica;
+package br.edu.ufape.musicpoint.basic;
 
 public class Register {
     private String name;

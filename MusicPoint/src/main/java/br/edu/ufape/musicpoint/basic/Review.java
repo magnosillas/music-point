@@ -1,7 +1,4 @@
-package br.edu.ufape.musicpoint.basica;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+package br.edu.ufape.musicpoint.basic;
 
 
 public class Review {

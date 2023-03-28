@@ -1,7 +1,7 @@
-package br.edu.ufape.musicpoint.fachada;
+package br.edu.ufape.musicpoint.front;
 
-import br.edu.ufape.musicpoint.basica.*;
-import br.edu.ufape.musicpoint.cadastro.CadastroAlbum;
+import br.edu.ufape.musicpoint.basic.*;
+import br.edu.ufape.musicpoint.register.CadastroAlbum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
