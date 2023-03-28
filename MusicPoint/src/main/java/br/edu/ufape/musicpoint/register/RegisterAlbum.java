@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CadastroAlbum  {
+public class RegisterAlbum {
     @Autowired
     private RepositoryAlbum repositoryAlbum;
 
