@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("musicpoint/api/v1")
+@RequestMapping("musicpoint/api/")
 public class AlbumController {
     @Autowired
     private MusicPoint musicPoint;

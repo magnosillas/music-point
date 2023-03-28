@@ -6,14 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Artist extends Content{
+public class Music extends Content{
+
     private String name;
-    private String photoURL;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Artist() {
+    public Music() {
     }
 
     public String getName() {
@@ -22,14 +22,6 @@ public class Artist extends Content{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPhotoURL() {
-        return photoURL;
-    }
-
-    public void setPhotoURL(String photoURL) {
-        this.photoURL = photoURL;
     }
 
     public void setId(Long id) {
