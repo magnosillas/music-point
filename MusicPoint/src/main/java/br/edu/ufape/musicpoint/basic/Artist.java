@@ -9,9 +9,7 @@ import jakarta.persistence.Id;
 public class Artist extends Content{
     private String name;
     private String photoURL;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+
 
     public Artist() {
     }
@@ -32,11 +30,5 @@ public class Artist extends Content{
         this.photoURL = photoURL;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getId() {
-        return id;
-    }
 }
