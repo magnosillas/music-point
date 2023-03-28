@@ -1,7 +1,11 @@
 package br.edu.ufape.musicpoint.basic;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public class Review {
+    @Id
     private long id;
     private String text;
 
@@ -26,5 +30,13 @@ public class Review {
 
     public void setAlbumPhoto(String albumPhoto) {
         this.albumPhoto = albumPhoto;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }

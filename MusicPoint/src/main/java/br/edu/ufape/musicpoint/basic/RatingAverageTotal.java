@@ -1,7 +1,16 @@
 package br.edu.ufape.musicpoint.basic;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class RatingAverageTotal {
     private String generalGrade;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public RatingAverageTotal() {
     }
@@ -12,5 +21,13 @@ public class RatingAverageTotal {
 
     public void setGeneralGrade(String generalGrade) {
         this.generalGrade = generalGrade;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getId() {
+        return id;
     }
 }
