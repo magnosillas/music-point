@@ -5,7 +5,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class PostReview {
-    private Review review;
+
     private int likes;
     private int unlikes;
     @Id
@@ -26,13 +26,6 @@ public class PostReview {
     }
 
 
-    public Review getReview() {
-        return review;
-    }
-
-    public void setReview(Review review) {
-        this.review = review;
-    }
 
     public int getLikes() {
         return likes;
