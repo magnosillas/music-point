@@ -8,8 +8,8 @@ import java.util.List;
 public class Album extends Content{
 
     private String name;
-    private String releaseDate;
-    private String genre;
+    private int ranking;
+
     private String photoAlbumURL;
     @OneToMany
     private List<Music> musics;
@@ -20,8 +20,11 @@ public class Album extends Content{
     public Album() {
     }
 
-
-
+    public Album(String name, int ranking, String photoAlbumURL) {
+        this.name = name;
+        this.ranking = ranking;
+        this.photoAlbumURL = photoAlbumURL;
+    }
 
     public String getPhotoAlbumURL() {
         return photoAlbumURL;
@@ -55,19 +58,4 @@ public class Album extends Content{
         this.name = name;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
-    }
-
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 }
