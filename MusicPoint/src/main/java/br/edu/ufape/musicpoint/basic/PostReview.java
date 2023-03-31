@@ -25,8 +25,6 @@ public class PostReview {
         return false;
     }
 
-
-
     public int getLikes() {
         return likes;
     }

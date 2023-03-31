@@ -7,8 +7,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Friend {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idAccount;
+
+    private Long idAccount;@GeneratedValue(strategy = GenerationType.IDENTITY)
     private String username;
 
     public Friend() {
