@@ -30,7 +30,7 @@ public class MusicPoint {
         return registerArtist.save(artist);
     }
     public User save(User user) {
-        return registerUser.save(user);
+        return registerUser.cadastrarUsuario(user);
     }
     public Music save(Music music) { return registerMusic.save(music); }
     public Review save(Review review) { return registerReview.save(review); }
@@ -38,5 +38,6 @@ public class MusicPoint {
     public PostReview save(PostReview postReview) { return registerPostReview.save(postReview); }
 
     public Album procurarAlbumId(long id){ return registerAlbum.procurarAlbumId(id);}
+    public User procurarUserId(long id){return registerUser.procurarIdUsuario(id);}
 
 }

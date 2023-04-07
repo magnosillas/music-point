@@ -17,7 +17,7 @@ public class RegisterAlbum {
     }
 
     public Album procurarAlbumId(long id){
-        return repositoryAlbum.findById(id);
+        return repositoryAlbum.findById(id).orElse(null);
     };
 
 

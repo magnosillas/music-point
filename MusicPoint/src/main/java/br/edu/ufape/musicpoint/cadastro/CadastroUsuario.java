@@ -14,7 +14,7 @@ public class CadastroUsuario implements InterfaceCadastroUsuario {
     @Autowired
     private RepositoryUser repositoryUser;
 
-    public User save(User user) {
+    public User cadastrarUsuario(User user) {
         return repositoryUser.save(user);
     }
 
