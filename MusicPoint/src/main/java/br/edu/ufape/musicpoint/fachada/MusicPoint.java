@@ -1,7 +1,8 @@
-package br.edu.ufape.musicpoint.front;
+package br.edu.ufape.musicpoint.fachada;
 
-import br.edu.ufape.musicpoint.basic.*;
-import br.edu.ufape.musicpoint.register.*;
+import br.edu.ufape.musicpoint.basica.*;
+import br.edu.ufape.musicpoint.cadastro.*;
+import br.edu.ufape.musicpoint.repositorio.RepositoryUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,13 +10,20 @@ import org.springframework.stereotype.Service;
 public class MusicPoint {
     @Autowired
     private RegisterAlbum registerAlbum;
+    @Autowired
     private RegisterArtist registerArtist;
-    private RegisterUser registerUser;
-    private RegisterFriend registerFriend;
+    @Autowired
+    private CadastroUsuario registerUser;
+    @Autowired
     private RegisterMusic registerMusic;
+    @Autowired
     private RegisterReview registerReview;
+    @Autowired
     private RegisterRatingAverageTotal registerRatingAverageTotal;
+    @Autowired
     private RegisterPostReview registerPostReview;
+    @Autowired
+    private RepositoryUser repositoryUser;
 
     public Album save(Album album){
         return registerAlbum.save(album);
@@ -26,7 +34,6 @@ public class MusicPoint {
     public User save(User user) {
         return registerUser.save(user);
     }
-    public Friend save(Friend friend) { return registerFriend.save(friend); }
     public Music save(Music music) { return registerMusic.save(music); }
     public Review save(Review review) { return registerReview.save(review); }
     public RatingAverageTotal save(RatingAverageTotal ratingAverageTotal) { return registerRatingAverageTotal.save(ratingAverageTotal); }

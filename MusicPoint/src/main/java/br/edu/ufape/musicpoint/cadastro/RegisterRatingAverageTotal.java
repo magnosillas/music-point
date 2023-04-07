@@ -1,7 +1,7 @@
-package br.edu.ufape.musicpoint.register;
+package br.edu.ufape.musicpoint.cadastro;
 
-import br.edu.ufape.musicpoint.basic.RatingAverageTotal;
-import br.edu.ufape.musicpoint.repository.RepositoryRatingAverageTotal;
+import br.edu.ufape.musicpoint.basica.RatingAverageTotal;
+import br.edu.ufape.musicpoint.repositorio.RepositoryRatingAverageTotal;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package br.edu.ufape.musicpoint.register;
+package br.edu.ufape.musicpoint.cadastro;
 
-import br.edu.ufape.musicpoint.basic.Review;
-import br.edu.ufape.musicpoint.repository.RepositoryReview;
+import br.edu.ufape.musicpoint.basica.Review;
+import br.edu.ufape.musicpoint.repositorio.RepositoryReview;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package br.edu.ufape.musicpoint.repository;
+package br.edu.ufape.musicpoint.repositorio;
 
-import br.edu.ufape.musicpoint.basic.Review;
+import br.edu.ufape.musicpoint.basica.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RepositoryReview extends JpaRepository<Review, Long > {

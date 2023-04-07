@@ -1,7 +1,7 @@
-package br.edu.ufape.musicpoint.register;
+package br.edu.ufape.musicpoint.cadastro;
 
-import br.edu.ufape.musicpoint.basic.Album;
-import br.edu.ufape.musicpoint.repository.RepositoryAlbum;
+import br.edu.ufape.musicpoint.basica.Album;
+import br.edu.ufape.musicpoint.repositorio.RepositorioAlbum;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,7 +12,7 @@ import java.util.List;
 @Transactional
 public class RegisterAlbum {
     @Autowired
-    private RepositoryAlbum repositoryAlbum;
+    private RepositorioAlbum repositoryAlbum;
 
     public Album save(Album album){
         return repositoryAlbum.save(album);

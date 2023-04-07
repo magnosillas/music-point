@@ -1,4 +1,4 @@
-package br.edu.ufape.musicpoint.basic;
+package br.edu.ufape.musicpoint.basica;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

@@ -1,9 +1,9 @@
-package br.edu.ufape.musicpoint.basic;
+package br.edu.ufape.musicpoint.basica;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class User {
@@ -15,6 +15,11 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToMany
+    private List<User> seguindo;
+    @ManyToMany
+    private List<User> seguidores;
 
     public User() {
     }
@@ -65,5 +70,25 @@ public class User {
 
     public Long getId() {
         return id;
+    }
+
+    public List<User> getSeguindo() {
+        if (seguindo == null)
+            seguindo = new ArrayList<User>();
+        return seguindo;
+    }
+
+    public void setSeguindo(List<User> seguindo) {
+        this.seguindo = seguindo;
+    }
+
+    public List<User> getSeguidores() {
+        if (seguidores == null)
+            seguidores = new ArrayList<User>();
+        return seguidores;
+    }
+
+    public void setSeguidores(List<User> seguidores) {
+        this.seguidores = seguidores;
     }
 }
