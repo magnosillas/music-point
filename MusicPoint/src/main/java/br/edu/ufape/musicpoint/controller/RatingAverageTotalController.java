@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("musicpoint/api/rating")
+@RequestMapping("musicpoint/api/")
 public class RatingAverageTotalController {
     @Autowired
     private MusicPoint musicPoint;
 
-    @PostMapping("cadastrarRating")
+    @PostMapping("rating")
     public RatingAverageTotal createRatingAverageTotal(@RequestBody RatingAverageTotal ratingAverageTotal) { return musicPoint.save(ratingAverageTotal); }
 }

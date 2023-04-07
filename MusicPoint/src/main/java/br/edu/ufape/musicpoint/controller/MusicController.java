@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("musicpoint/api/music")
+@RequestMapping("musicpoint/api/")
 public class MusicController {
     @Autowired
     private MusicPoint musicPoint;
 
-    @PostMapping("cadastrarMusic")
+    @PostMapping("music")
     public Music createMusic(@RequestBody Music music){ return musicPoint.save(music); }
 }

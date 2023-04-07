@@ -7,7 +7,7 @@ import java.util.List;
 public interface InterfaceCadastroUsuario {
     User procurarIdUsuario(long id);
 
-    User adicionarContaUsuario(User user, User novoUsuario);
+    User adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID);
 
     User atualizarContaUsuario(User user);
 

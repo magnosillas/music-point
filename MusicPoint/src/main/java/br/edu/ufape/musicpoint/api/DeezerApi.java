@@ -1,18 +1,16 @@
 package br.edu.ufape.musicpoint.api;
 
 
-import br.edu.ufape.musicpoint.basic.Album;
-import br.edu.ufape.musicpoint.basic.Artist;
-import br.edu.ufape.musicpoint.basic.Music;
-import br.edu.ufape.musicpoint.controller.AlbumController;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import br.edu.ufape.musicpoint.basica.Album;
+import br.edu.ufape.musicpoint.basica.Artist;
+import br.edu.ufape.musicpoint.basica.Music;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.ArrayList;
 import java.util.List;

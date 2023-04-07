@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface RepositoryUser extends JpaRepository<User, Long > {
-    public User findByNumero(long id);
+
 }

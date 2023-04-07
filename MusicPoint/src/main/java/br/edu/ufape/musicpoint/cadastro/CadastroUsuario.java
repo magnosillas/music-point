@@ -24,8 +24,14 @@ public class CadastroUsuario implements InterfaceCadastroUsuario {
     }
 
     @Override
-    public User adicionarContaUsuario(User usuario, User novousuario) {
-        return usuario.getSeguindo().add(novousuario);
+    public User adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID) {
+
+        User usuario = this.procurarIdUsuario(usuarioID);
+        User seguirUsuario = this.procurarIdUsuario(seguirUsuarioID);
+        List<User> seguindo = usuario.getSeguindo();
+        seguindo.add(seguirUsuario);
+
+        return usuario;
     }
 
     @Override

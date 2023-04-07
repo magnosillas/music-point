@@ -1,4 +1,4 @@
-package br.edu.ufape.musicpoint.basic;
+package br.edu.ufape.musicpoint.basica;
 
 import jakarta.persistence.*;
 
@@ -8,8 +8,8 @@ import java.util.List;
 public class Album extends Content{
 
     private String name;
-    private String releaseDate;
-    private String genre;
+
+    private int rank;
     private String photoAlbumURL;
     @OneToMany
     private List<Music> musics;
@@ -20,8 +20,11 @@ public class Album extends Content{
     public Album() {
     }
 
-
-
+    public Album(String name,int rank, String photoAlbumURL) {
+        this.name = name;
+        this.photoAlbumURL = photoAlbumURL;
+        this.rank = rank;
+    }
 
     public String getPhotoAlbumURL() {
         return photoAlbumURL;
@@ -55,19 +58,11 @@ public class Album extends Content{
         this.name = name;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public int getRank() {
+        return rank;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }

@@ -2,7 +2,6 @@ package br.edu.ufape.musicpoint.fachada;
 
 import br.edu.ufape.musicpoint.basica.*;
 import br.edu.ufape.musicpoint.cadastro.*;
-import br.edu.ufape.musicpoint.repositorio.RepositoryUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +21,10 @@ public class MusicPoint {
     private RegisterRatingAverageTotal registerRatingAverageTotal;
     @Autowired
     private RegisterPostReview registerPostReview;
-    @Autowired
-    private RepositoryUser repositoryUser;
+
 
     public Album save(Album album){
-        return registerAlbum.save(album);
+        return registerAlbum.cadastrarAlbum(album);
     }
     public Artist save(Artist artist) {
         return registerArtist.save(artist);
@@ -38,4 +36,7 @@ public class MusicPoint {
     public Review save(Review review) { return registerReview.save(review); }
     public RatingAverageTotal save(RatingAverageTotal ratingAverageTotal) { return registerRatingAverageTotal.save(ratingAverageTotal); }
     public PostReview save(PostReview postReview) { return registerPostReview.save(postReview); }
+
+    public Album procurarAlbumId(long id){ return registerAlbum.procurarAlbumId(id);}
+
 }
