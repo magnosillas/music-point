@@ -1,4 +1,4 @@
-package br.edu.ufape.musicpoint.basica;
+package br.edu.ufape.musicpoint.basic;
 
 import jakarta.persistence.*;
 
@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 public class Album extends Content{
 
-    private String nome;
+    private String name;
     private String releaseDate;
     private String genre;
     private String photoAlbumURL;
@@ -18,8 +18,10 @@ public class Album extends Content{
 
 
     public Album() {
-
     }
+
+
+
 
     public String getPhotoAlbumURL() {
         return photoAlbumURL;
@@ -45,12 +47,12 @@ public class Album extends Content{
         this.artist = artist;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String name) {
-        this.nome = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getReleaseDate() {

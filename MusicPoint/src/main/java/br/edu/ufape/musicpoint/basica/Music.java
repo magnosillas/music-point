@@ -11,6 +11,10 @@ public class Music extends Content{
     public Music() {
     }
 
+    public Music(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

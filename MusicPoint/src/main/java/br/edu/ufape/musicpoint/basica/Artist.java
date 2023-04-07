@@ -11,6 +11,11 @@ public class Artist extends Content{
     public Artist() {
     }
 
+    public Artist(String name, String photoURL) {
+        this.name = name;
+        this.photoURL = photoURL;
+    }
+
     public String getName() {
         return name;
     }
