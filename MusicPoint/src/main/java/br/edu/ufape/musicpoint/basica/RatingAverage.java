@@ -6,13 +6,13 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class RatingAverageTotal {
+public class RatingAverage {
     private String generalGrade;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public RatingAverageTotal() {
+    public RatingAverage() {
     }
 
     public String getGeneralGrade() {

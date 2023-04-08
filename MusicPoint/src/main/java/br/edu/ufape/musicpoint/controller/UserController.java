@@ -19,10 +19,7 @@ public class UserController {
     @Autowired
     private CadastroUsuario cadastroUsuario;
 
-    //@PostMapping(value = "/seguir")
-    //public ResponseEntity<String> seguirConta(@RequestBody User user, @PathVariable long UserId) {
 
-    //}
     @PostMapping("usuario")
     public ResponseEntity<User> createUser(@RequestBody User user){
         User us = musicPoint.save(user);

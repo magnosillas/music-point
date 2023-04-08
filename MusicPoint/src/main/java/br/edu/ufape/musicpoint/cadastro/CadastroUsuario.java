@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 @Transactional
-public class CadastroUsuario implements InterfaceCadastroUsuario {
+public class CadastroUsuario {
     @Autowired
     private RepositoryUser repositoryUser;
 
@@ -18,12 +18,12 @@ public class CadastroUsuario implements InterfaceCadastroUsuario {
         return repositoryUser.save(user);
     }
 
-    @Override
+
     public User procurarIdUsuario(long id) {
         return repositoryUser.findById(id).orElse(null);
     }
 
-    @Override
+
     public User adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID) {
 
         User usuario = this.procurarIdUsuario(usuarioID);
@@ -34,12 +34,12 @@ public class CadastroUsuario implements InterfaceCadastroUsuario {
         return usuario;
     }
 
-    @Override
+
     public User atualizarContaUsuario(User user) {
         return repositoryUser.save(user);
     }
 
-    @Override
+
     public void deletarUsuario(User user) {
         repositoryUser.delete(user);
     }

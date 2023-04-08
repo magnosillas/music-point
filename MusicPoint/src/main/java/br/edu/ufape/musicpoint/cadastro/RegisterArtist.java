@@ -14,7 +14,7 @@ public class RegisterArtist {
     @Autowired
     private RepositoryArtist repositoryArtist;
 
-    public Artist save(Artist artist){
+    public Artist cadastrarArtista(Artist artist){
         return repositoryArtist.save(artist);
     }
 }

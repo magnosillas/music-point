@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "user")
 public class User {
     private String username;
     private String email;
@@ -16,9 +17,9 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany
+    @OneToMany
     private List<User> seguindo;
-    @ManyToMany
+    @OneToMany
     private List<User> seguidores;
 
     public User() {

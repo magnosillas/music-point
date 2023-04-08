@@ -8,9 +8,21 @@ public class Review {
     @Id
     private long id;
     private String text;
-
     private String albumPhoto;
+    private int likes;
 
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getLikes() {
+        return likes;
+    }
+
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
     public Review() {
     }
 

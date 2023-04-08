@@ -12,7 +12,7 @@ public class RegisterMusic {
     @Autowired
     private RepositoryMusic repositoryMusic;
 
-    public Music save(Music music) {
+    public Music cadastrarMusica(Music music) {
         return repositoryMusic.save(music);
     }
 }

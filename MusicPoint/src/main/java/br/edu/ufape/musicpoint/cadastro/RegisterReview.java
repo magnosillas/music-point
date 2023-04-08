@@ -12,7 +12,7 @@ public class RegisterReview {
     @Autowired
     private RepositoryReview repositoryReview;
 
-    public Review save(Review review) {
+    public Review cadastrarReview(Review review) {
         return repositoryReview.save(review);
     }
 }
