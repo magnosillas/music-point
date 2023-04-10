@@ -38,7 +38,7 @@ public class UsuarioController {
     @PostMapping(value = "{usuarioId}/{usuarioDestinoID}")
     public ResponseEntity<Usuario> adicionarContaCliente(@PathVariable long usuarioId, @PathVariable long usuarioDestinoID) {
         try {
-            return ResponseEntity.ok(cadastroUsuario.adicionarContaUsuario(usuarioId,usuarioDestinoID));
+            return ResponseEntity.ok(cadastroUsuario.seguirUsuario(usuarioId,usuarioDestinoID));
         } catch(Exception ex) {
             return new ResponseEntity<Usuario> (HttpStatus.BAD_REQUEST);
         }

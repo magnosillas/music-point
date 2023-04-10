@@ -22,7 +22,7 @@ public class CadastroUsuario {
         return repositorioUsuario.findById(id).orElse(null);
     }
 
-    public Usuario adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID) {
+    public Usuario seguirUsuario(Long usuarioID, Long seguirUsuarioID) {
         Usuario usuario = this.procurarIdUsuario(usuarioID);
         Usuario seguirUsuario = this.procurarIdUsuario(seguirUsuarioID);
         List<Usuario> seguindo = usuario.getSeguindo();

@@ -5,9 +5,9 @@ import br.edu.ufape.musicpoint.basica.Usuario;
 public interface InterfaceCadastroUsuario {
     Usuario procurarIdUsuario(long id);
 
-    Usuario adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID);
+    Usuario seguirUsuario(Long usuarioID, Long seguirUsuarioID);
 
-    Usuario atualizarContaUsuario(Usuario usuario);
+    Usuario atualizar(Usuario usuario);
 
     void deletarUsuario(Usuario usuario);
 }
