@@ -4,6 +4,7 @@ import br.edu.ufape.musicpoint.basica.Comentario;
 import br.edu.ufape.musicpoint.basica.Postagem;
 import br.edu.ufape.musicpoint.basica.Usuario;
 import br.edu.ufape.musicpoint.repositorio.RepositorioComentario;
+import jakarta.persistence.Entity;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +13,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@Transactional
-public class CadastroComentario implements InterfaceCadastroComentario{
+public class CadastroComentario implements InterfaceCadastroComentario {
 
     @Autowired
     private RepositorioComentario repositorioComentario;
-
-
 
     public List<Comentario> buscarPelaPostagem(Postagem post) {
         return null;

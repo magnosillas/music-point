@@ -4,8 +4,8 @@ package br.edu.ufape.musicpoint.exceptions;
 import br.edu.ufape.musicpoint.basica.Usuario;
 
 public class UsuarioJaSeguidoException extends Exception {
-    private Usuario seguindo;
-    private Usuario seguidores;
+    private final Usuario seguindo;
+    private final Usuario seguidores;
 
     public UsuarioJaSeguidoException(Usuario seguindo, Usuario seguidores) {
         super("Você já segue este usuário");

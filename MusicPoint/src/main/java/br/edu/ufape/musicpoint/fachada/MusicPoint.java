@@ -32,7 +32,7 @@ public class MusicPoint {
         return registerUser.cadastrar(usuario);
     }
     public Musica save(Musica musica) { return cadastroMusica.cadastrarMusica(musica); }
-    public Review save(Review review) { return cadastroReview.cadastrar(review); }
+    public Review save(Review review) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException { return cadastroReview.cadastrar(review); }
     public NotalGeral save(NotalGeral notalGeralTotal) { return cadastroNotaGeral.cadastrarMediaNotas(notalGeralTotal); }
 
     public Album bsucarAlbum(long id){ return cadastroAlbum.procurarAlbumId(id);}

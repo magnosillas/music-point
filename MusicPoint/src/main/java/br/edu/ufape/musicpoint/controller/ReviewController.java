@@ -1,6 +1,9 @@
 package br.edu.ufape.musicpoint.controller;
 
 import br.edu.ufape.musicpoint.basica.Review;
+import br.edu.ufape.musicpoint.exceptions.MaxCaracteresReviewExcedidoException;
+import br.edu.ufape.musicpoint.exceptions.NomeReviewInvalidoException;
+import br.edu.ufape.musicpoint.exceptions.TextoReviewInvalidoException;
 import br.edu.ufape.musicpoint.fachada.MusicPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +18,7 @@ public class ReviewController {
     private MusicPoint musicPoint;
 
     @PostMapping("review")
-    public ResponseEntity<Review> createReview(@RequestBody Review review) {
+    public ResponseEntity<Review> createReview(@RequestBody Review review) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException {
         Review rvw = musicPoint.save(review);
         return new ResponseEntity<Review>(rvw, HttpStatus.CREATED);
     }

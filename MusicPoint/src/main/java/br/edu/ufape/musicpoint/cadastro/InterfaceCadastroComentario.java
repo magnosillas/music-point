@@ -7,9 +7,7 @@ import br.edu.ufape.musicpoint.basica.Usuario;
 import java.util.List;
 
 public interface InterfaceCadastroComentario {
-
-
-    List<Comentario> buscarPelaPostagem( Postagem post);
+    List<Comentario> buscarPelaPostagem(Postagem post);
 
     List<Comentario> buscarPeloAutor(Usuario autor);
 

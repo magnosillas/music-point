@@ -1,15 +1,17 @@
 package br.edu.ufape.musicpoint.exceptions;
-
 import br.edu.ufape.musicpoint.basica.Review;
-import org.hibernate.ObjectNotFoundException;
 
-public class ReviewNaoEncontradoException extends Exception {
+public class ReviewNaoEncontradoException extends ObjetoNaoEncotradoException {
     private Review review;
 
-//    public ReviewNaoEncontradoException(Review review) {
-//        //this("Post");
-//        this.review = review;
-//    }
+    public ReviewNaoEncontradoException() {
+        super("nomeClasse");
+    }
+
+    public ReviewNaoEncontradoException(Review review) {
+        this();
+        this.review = review;
+    }
 
     public Review getReview() {
         return review;
