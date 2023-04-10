@@ -26,8 +26,8 @@ public class UsuarioController {
 
     @GetMapping("/usuario/{id}")
     public ResponseEntity<Usuario> findByIdUser(@PathVariable long id){
-        if (musicPoint.procurarUserId(id) != null) {
-            return new ResponseEntity<Usuario>(musicPoint.procurarUserId(id), HttpStatus.OK);
+        if (musicPoint.procurarUsuario(id) != null) {
+            return new ResponseEntity<Usuario>(musicPoint.procurarUsuario(id), HttpStatus.OK);
         } else {
             return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
         }

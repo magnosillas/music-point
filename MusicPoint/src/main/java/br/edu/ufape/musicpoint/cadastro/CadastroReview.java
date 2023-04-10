@@ -54,13 +54,20 @@ public class CadastroReview implements InterfaceReview{
     }
 
     @Override
-    public Review atualizar(Review object) {
-        return null;
+    public Review atualizar(Review review)
+//            throws PostNotFoundException, InvalidPostNameException, InvalidPostTextException, PostMaxCharacterSizeExceededException
+    {
+        Review reviewVelho = buscarPorId(review.getId());
+        review.setDataCriacao(reviewVelho.getDataCriacao());
+        return cadastrar(review);
     }
 
     @Override
-    public void deletar(Review object) {
-
+    public void deletar(Review review)
+//            throws PostNotFoundException
+    {
+        buscarPorId(review.getId());
+        repositorioReview.delete(review);
     }
 
 

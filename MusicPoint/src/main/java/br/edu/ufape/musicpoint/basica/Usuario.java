@@ -1,9 +1,7 @@
 package br.edu.ufape.musicpoint.basica;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -43,7 +41,7 @@ public class Usuario {
         return seguindo.add(usuario);
     }
 
-    public boolean unfollow(Usuario usuario)
+    public boolean pararSeguir(Usuario usuario)
            // throws UserNotFollowedException
     {
         if (!seguindo.contains(usuario)) {
