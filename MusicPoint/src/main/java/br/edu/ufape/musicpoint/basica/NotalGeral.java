@@ -10,17 +10,17 @@ public class NotalGeral {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String generalGrade;
+    private String nota;
 
     public NotalGeral() {
     }
 
-    public String getGeneralGrade() {
-        return generalGrade;
+    public String getNota() {
+        return nota;
     }
 
-    public void setGeneralGrade(String generalGrade) {
-        this.generalGrade = generalGrade;
+    public void setNota(String generalGrade) {
+        this.nota = generalGrade;
     }
 
     public void setId(Long id) {

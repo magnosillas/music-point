@@ -31,7 +31,7 @@ public class MusicPoint {
         return registerUser.cadastrarUsuario(usuario);
     }
     public Musica save(Musica musica) { return cadastroMusica.cadastrarMusica(musica); }
-    public Review save(Review review) { return cadastroReview.cadastrarReview(review); }
+    public Review save(Review review) { return cadastroReview.cadastrar(review); }
     public NotalGeral save(NotalGeral notalGeralTotal) { return cadastroNotaGeral.cadastrarMediaNotas(notalGeralTotal); }
 
     public Album procurarAlbumId(long id){ return cadastroAlbum.procurarAlbumId(id);}

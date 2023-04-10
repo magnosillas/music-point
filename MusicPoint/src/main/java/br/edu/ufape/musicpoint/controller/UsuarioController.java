@@ -35,8 +35,8 @@ public class UsuarioController {
 
 
 
-    @PostMapping(value = "{usuarioId}/{usuarioDestinoID}")
-    public ResponseEntity<Usuario> adicionarContaCliente(@PathVariable long usuarioId, @PathVariable long usuarioDestinoID) {
+    @PostMapping(value = "usuario/{usuarioId}/{usuarioDestinoID}")
+    public ResponseEntity<Usuario> seguirUsuario(@PathVariable long usuarioId, @PathVariable long usuarioDestinoID) {
         try {
             return ResponseEntity.ok(cadastroUsuario.seguirUsuario(usuarioId,usuarioDestinoID));
         } catch(Exception ex) {

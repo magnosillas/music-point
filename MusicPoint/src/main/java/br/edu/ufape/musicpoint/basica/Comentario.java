@@ -1,7 +1,8 @@
 package br.edu.ufape.musicpoint.basica;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-
+@Entity
 public class Comentario extends Postagem{
     @ManyToOne
     private Postagem post;

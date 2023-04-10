@@ -16,6 +16,15 @@ public class CadastroReview implements InterfaceReview{
     @Autowired
     private RepositorioReview repositorioReview;
 
+    @Override
+    public Review buscarPorId(Long id)
+//    throws ReviewNaoEncontradoException
+    {
+        Optional<Review> review = repositorioReview.findById(id);
+//        if (review.isEmpty())
+//            throw new ReReviewNaoEncontradoException();
+        return review.get();
+    }
 
     @Override
     public List<Review> buscarPorAutor(Usuario usuario) {
@@ -28,7 +37,19 @@ public class CadastroReview implements InterfaceReview{
     }
 
     @Override
-    public Review cadastrar(Review review) {
+    public Review cadastrar(Review review)
+//            throws NomeReviewInvalidoException, TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException
+    {
+//        if(review.getTitulo() == null || review.getTitulo().isBlank()){
+//            throw new NomeReviewInvalidoException(review);
+//        }
+//        if(review.getTexto() == null || review.getTexto().isBlank()){
+//            throw new TextoReviewInvalidoException(review);
+//        }
+//        if(review.getTexto().length() > 1500){
+//            throw new MaxCaracteresReviewExcedidoException(review);
+//        }
+
         return repositorioReview.save(review);
     }
 
@@ -42,11 +63,5 @@ public class CadastroReview implements InterfaceReview{
 
     }
 
-    @Override
-    public Review buscarPorId(Long id)
-//    throws ReviewNaoEncontradoException
-    {
-        Optional<Review> review = repositorioReview.findById(id);
-        return null;
-    }
+
 }

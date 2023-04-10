@@ -30,7 +30,7 @@ public class CadastroComentario implements InterfaceCadastroComentario{
     }
 
 
-    public Comentario cadastrarComentario(Comentario comentario)
+    public Comentario cadastrar(Comentario comentario)
 //    throws InvalidCommentException, CommentMaxCharacterSizeExceededException
     {
 //        if(comentario.getTexto().isEmpty() || comentario.getTexto().isBlank()) {
@@ -43,7 +43,7 @@ public class CadastroComentario implements InterfaceCadastroComentario{
     }
 
 
-    public void deletarComentario(Comentario comentario)
+    public void deletar(Comentario comentario)
 //    throws ComentarioNaoEncontradoException
     {
 //        buscarPeloId(comentario.getId());

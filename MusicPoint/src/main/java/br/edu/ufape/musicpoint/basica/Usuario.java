@@ -21,7 +21,6 @@ public class Usuario {
     private String biography;
 
     @ManyToMany
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Usuario> seguindo;
 
     private int seguidores;
