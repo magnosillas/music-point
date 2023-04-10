@@ -57,8 +57,6 @@ public class MusicPoint {
         deletar(buscarUsuario(usuarioId));
     }
 
-
-
     public Usuario seguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioJaSeguidoException, UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException
     {
         if (usuario.seguir(seguindo)) {
@@ -112,5 +110,28 @@ public class MusicPoint {
         }
     }
 
+    public Review atualizarReview(Review review) throws ReviewNaoEncontradoException, TextoReviewInvalidoException, NomeReviewInvalidoException, MaxCaracteresReviewExcedidoException{
+       return cadastroReview.atualizar(review);
+    }
+
+    public void likePost(Review review) throws ReviewNaoEncontradoException {
+        Review review1 = cadastroReview.buscarPorId(review.getId());
+        review1.like();
+        try {
+            atualizarReview(review1);
+        } catch (NomeReviewInvalidoException | TextoReviewInvalidoException | MaxCaracteresReviewExcedidoException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void unlikePost(Review review) throws ReviewNaoEncontradoException {
+        Review review1 = cadastroReview.buscarPorId(review.getId());
+        review1.unlike();
+        try {
+            atualizarReview(review1);
+        } catch (NomeReviewInvalidoException | TextoReviewInvalidoException | MaxCaracteresReviewExcedidoException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
