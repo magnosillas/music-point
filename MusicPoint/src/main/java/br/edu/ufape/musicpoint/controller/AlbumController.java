@@ -23,8 +23,8 @@ public class AlbumController {
 
     @GetMapping("album/{id}")
     public ResponseEntity<Album> findByIdAlbum(@PathVariable long id){
-        if (musicPoint.procurarAlbumId(id) != null) {
-            return new ResponseEntity<Album>(musicPoint.procurarAlbumId(id), HttpStatus.OK);
+        if (musicPoint.bsucarAlbum(id) != null) {
+            return new ResponseEntity<Album>(musicPoint.bsucarAlbum(id), HttpStatus.OK);
         } else {
             return new ResponseEntity<Album>(HttpStatus.NOT_FOUND);
         }

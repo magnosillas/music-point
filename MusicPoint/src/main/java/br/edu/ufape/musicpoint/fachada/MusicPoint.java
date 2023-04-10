@@ -2,6 +2,7 @@ package br.edu.ufape.musicpoint.fachada;
 
 import br.edu.ufape.musicpoint.basica.*;
 import br.edu.ufape.musicpoint.cadastro.*;
+import br.edu.ufape.musicpoint.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,76 +28,86 @@ public class MusicPoint {
     public Artista save(Artista artista) {
         return cadastroArtista.cadastrarArtista(artista);
     }
-    public Usuario save(Usuario usuario) {
+    public Usuario save(Usuario usuario) throws UsernameExistenteException, UsernameInvalidoException {
         return registerUser.cadastrar(usuario);
     }
     public Musica save(Musica musica) { return cadastroMusica.cadastrarMusica(musica); }
     public Review save(Review review) { return cadastroReview.cadastrar(review); }
     public NotalGeral save(NotalGeral notalGeralTotal) { return cadastroNotaGeral.cadastrarMediaNotas(notalGeralTotal); }
 
-    public Album procurarAlbumId(long id){ return cadastroAlbum.procurarAlbumId(id);}
-    public Usuario procurarUsuario(long id)
-//            throws UsuarioNaoEncontradoException
-    {return registerUser.buscarPorId(id);}
+    public Album bsucarAlbum(long id){ return cadastroAlbum.procurarAlbumId(id);}
+    public Usuario buscarUsuario(long id)  throws UsuarioNaoEncontradoException {
+        return registerUser.buscarPorId(id);}
 
-    public Usuario procurarUsuario(String username)
-//            throws UsuarioNaoEncontradoException
-    {return registerUser.buscarPorUsername(username);}
+    public Usuario buscarUsuario(String username) throws UsuarioNaoEncontradoException {
+        return registerUser.buscarPorUsername(username);
+    }
 
-    public Usuario atualizar (Usuario usuario)
-//        throws UsernameInvalidoException, UsernameExistenteException,UsuarioNaoEncontradoException
+    public Usuario atualizar (Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException,UsuarioNaoEncontradoException
     {
         return registerUser.atualizar(usuario);
     }
 
-    public void seguirUsuario(Usuario usuario, Usuario seguindo)
-//            throws UserAlreadyFollowedException, UserNotFoundException, UsernameTakenException, InvalidUsernameException
+    public void deletar(Usuario usuario) throws UsuarioNaoEncontradoException {
+        buscarUsuario(usuario.getId());
+        registerUser.deletar(usuario);
+    }
+
+    public void deletar(Long usuarioId) throws UsuarioNaoEncontradoException{
+        deletar(buscarUsuario(usuarioId));
+    }
+
+
+
+    public Usuario seguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioJaSeguidoException, UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException
     {
         if (usuario.seguir(seguindo)) {
             seguindo.setSeguidores(seguindo.getSeguidores() + 1);
             atualizar(usuario);
             atualizar(seguindo);
+
         }
+        return usuario;
     }
 
-    public void seguirUsuario(Long usuarioId, Long seguindoId)
-            throws UserNotFoundException, UserAlreadyFollowedException
-    {
+    public Usuario seguirUsuario(Long usuarioId, Long seguindoId) throws UsuarioNaoEncontradoException, UsuarioJaSeguidoException  {
         try {
-            followUser(findUser(usuarioId), findUser(seguindoId));
-        } catch (UsernameTakenException | InvalidUsernameException e) {
+            return seguirUsuario(buscarUsuario(usuarioId), buscarUsuario(seguindoId));
+        } catch (UsernameExistenteException | UsernameInvalidoException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void seguirUsuario(String followingUsername, String followedUsername) throws UserNotFoundException, UserAlreadyFollowedException {
+    public Usuario seguirUsuario(String usuarioUsername, String seguindoUsername) throws UsuarioNaoEncontradoException, UsuarioJaSeguidoException {
         try {
-            followUser(findUser(followingUsername), findUser(followedUsername));
-        } catch (UsernameTakenException | InvalidUsernameException e) {
+            return seguirUsuario(buscarUsuario(usuarioUsername), buscarUsuario(seguindoUsername));
+        } catch (UsernameExistenteException | UsernameInvalidoException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void pararSeguirUsuario(User following, User followed) throws UserNotFoundException, UsernameTakenException, InvalidUsernameException, UserNotFollowedException {
-        if (following.unfollow(followed)) {
-            followed.setFollowers(followed.getFollowers() - 1);
-            updateUser(following);
-            updateUser(followed);
+    public Usuario pararSeguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException, UsuarioNaoSeguidoException {
+        if (usuario.pararSeguir(seguindo)) {
+            seguindo.setSeguidores(seguindo.getSeguidores() - 1);
+            atualizar(usuario);
+            atualizar(seguindo);
+
         }
+        return usuario;
     }
 
-    public void pararSeguirUsuario(Long followingId, Long followedId) throws UserNotFoundException, UserNotFollowedException {
+    public Usuario pararSeguirUsuario(Long followingId, Long followedId) throws UsuarioNaoEncontradoException, UsuarioNaoSeguidoException {
         try {
-            unfollowUser(findUser(followingId), findUser(followedId));
-        } catch (UsernameTakenException | InvalidUsernameException e) {
+            return pararSeguirUsuario(buscarUsuario(followingId), buscarUsuario(followedId));
+        } catch (UsernameExistenteException | UsernameInvalidoException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void pararSeguirUsuario(String followingUsername, String followedUsername) throws UserNotFoundException, UserNotFollowedException {
+    public Usuario pararSeguirUsuario(String usuarioUsername, String seguindoUsername) throws UsuarioNaoEncontradoException, UsuarioNaoSeguidoException {
         try {
-            unfollowUser(findUser(followingUsername), findUser(followedUsername));
-        } catch (UsernameTakenException | InvalidUsernameException e) {
+            return pararSeguirUsuario(buscarUsuario(usuarioUsername), buscarUsuario(seguindoUsername));
+        } catch (UsernameExistenteException | UsernameInvalidoException e) {
             throw new RuntimeException(e);
         }
     }

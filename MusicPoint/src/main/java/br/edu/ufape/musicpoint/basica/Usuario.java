@@ -1,5 +1,7 @@
 package br.edu.ufape.musicpoint.basica;
 
+import br.edu.ufape.musicpoint.exceptions.UsuarioJaSeguidoException;
+import br.edu.ufape.musicpoint.exceptions.UsuarioNaoSeguidoException;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -7,7 +9,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "usuario")
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,20 +34,17 @@ public class Usuario {
         this.password = password;
     }
 
-    public boolean seguir(Usuario usuario)
-//            throws UserAlreadyFollowedException
-    {
-        if (seguindo.contains(usuario)){}
-//            throw new UserAlreadyFollowedException(this, usuario);
+    public boolean seguir(Usuario usuario) throws UsuarioJaSeguidoException {
+        if (seguindo.contains(usuario))
+            throw new UsuarioJaSeguidoException(this, usuario);
         return seguindo.add(usuario);
     }
 
-    public boolean pararSeguir(Usuario usuario)
-           // throws UserNotFollowedException
+    public boolean pararSeguir(Usuario usuario) throws UsuarioNaoSeguidoException
     {
-        if (!seguindo.contains(usuario)) {
-            // throw new UserNotFollowedException(this, usuario);
-        }
+        if (!seguindo.contains(usuario))
+             throw new UsuarioNaoSeguidoException(this, usuario);
+
         return seguindo.remove(usuario);
     }
 

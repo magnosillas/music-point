@@ -1,6 +1,9 @@
 package br.edu.ufape.musicpoint.cadastro;
 
 import br.edu.ufape.musicpoint.basica.Usuario;
+import br.edu.ufape.musicpoint.exceptions.UsernameExistenteException;
+import br.edu.ufape.musicpoint.exceptions.UsernameInvalidoException;
+import br.edu.ufape.musicpoint.exceptions.UsuarioNaoEncontradoException;
 import br.edu.ufape.musicpoint.repositorio.RepositorioUsuario;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,25 +18,24 @@ public class CadastroUsuario {
     @Autowired
     private RepositorioUsuario repositorioUsuario;
 
-    public Usuario cadastrar(Usuario usuario)
-//            throws UsernameInvalidoException, UsernameExistenteException
+    public Usuario cadastrar(Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException
     {
-//        if(usuario.getUsername() == null ||
-//            usuario.getUsername().isBlank()||
-//            usuario.getUsername().matches("[a-zA-Z0-9_.-]+"))
-//            throw new UsernameInvalidoException(usuario);
-//        Optional<Usuario> usuarioSalvo = repositorioUsuario.findByUsername(usuario.getUsername());
-//        if (usuarioSalvo.isPresent() && !usuarioSalvo.get().getId().equals(usuario.getId()))
-//            throw new UsernameExistenteException(usuario, usuarioSalvo.get());
+        if(usuario.getUsername() == null ||
+            usuario.getUsername().isBlank()||
+            usuario.getUsername().matches("[a-zA-Z0-9_.-]+"))
+            throw new UsernameInvalidoException(usuario);
+        Optional<Usuario> usuarioSalvo = repositorioUsuario.findByUsername(usuario.getUsername());
+        if (usuarioSalvo.isPresent() && !usuarioSalvo.get().getId().equals(usuario.getId()))
+            throw new UsernameExistenteException(usuario, usuarioSalvo.get());
         return repositorioUsuario.save(usuario);
     }
 
     public Usuario buscarPorId(long id)
-//    throws UsuarioNaoEncontradoException
+    throws UsuarioNaoEncontradoException
     {
         Optional<Usuario> usuario = repositorioUsuario.findById(id);
-//        if(usuario.isEmpty())
-//            throw new UsuarioNaoEncontradoException();
+        if(usuario.isEmpty())
+            throw new UsuarioNaoEncontradoException();
         return usuario.get();
     }
 
@@ -46,17 +48,10 @@ public class CadastroUsuario {
         return usuario.get();
     }
 
-    public Usuario seguirUsuario(Long usuarioID, Long seguirUsuarioID) {
-        Usuario usuario = this.buscarPorId(usuarioID);
-        Usuario seguirUsuario = this.buscarPorId(seguirUsuarioID);
-        List<Usuario> seguindo = usuario.getSeguindo();
-        seguindo.add(seguirUsuario);
-        return usuario;
-    }
 
 
-    public Usuario atualizar(Usuario usuario)
-//            throws UsernameInvalidoException, UsernameExistenteException,UsuarioNaoEncontradoException
+
+    public Usuario atualizar(Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException,UsuarioNaoEncontradoException
     {
         Usuario usuarioSalvo = buscarPorId(usuario.getId());
         usuario.setPassword(usuarioSalvo.getPassword());
@@ -64,8 +59,7 @@ public class CadastroUsuario {
     }
 
 
-    public void deletar(Usuario usuario)
-//    throws UsuarioNaoEncontradoException
+    public void deletar(Usuario usuario) throws UsuarioNaoEncontradoException
     {
         buscarPorId(usuario.getId());
         repositorioUsuario.delete(usuario);
