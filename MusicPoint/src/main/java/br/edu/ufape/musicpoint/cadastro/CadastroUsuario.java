@@ -1,7 +1,7 @@
 package br.edu.ufape.musicpoint.cadastro;
 
-import br.edu.ufape.musicpoint.basica.User;
-import br.edu.ufape.musicpoint.repositorio.RepositoryUser;
+import br.edu.ufape.musicpoint.basica.Usuario;
+import br.edu.ufape.musicpoint.repositorio.RepositorioUsuario;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,35 +12,31 @@ import java.util.List;
 @Transactional
 public class CadastroUsuario {
     @Autowired
-    private RepositoryUser repositoryUser;
+    private RepositorioUsuario repositorioUsuario;
 
-    public User cadastrarUsuario(User user) {
-        return repositoryUser.save(user);
+    public Usuario cadastrarUsuario(Usuario usuario) {
+        return repositorioUsuario.save(usuario);
     }
 
-
-    public User procurarIdUsuario(long id) {
-        return repositoryUser.findById(id).orElse(null);
+    public Usuario procurarIdUsuario(long id) {
+        return repositorioUsuario.findById(id).orElse(null);
     }
 
-
-    public User adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID) {
-
-        User usuario = this.procurarIdUsuario(usuarioID);
-        User seguirUsuario = this.procurarIdUsuario(seguirUsuarioID);
-        List<User> seguindo = usuario.getSeguindo();
+    public Usuario adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID) {
+        Usuario usuario = this.procurarIdUsuario(usuarioID);
+        Usuario seguirUsuario = this.procurarIdUsuario(seguirUsuarioID);
+        List<Usuario> seguindo = usuario.getSeguindo();
         seguindo.add(seguirUsuario);
-
         return usuario;
     }
 
 
-    public User atualizarContaUsuario(User user) {
-        return repositoryUser.save(user);
+    public Usuario atualizarContaUsuario(Usuario usuario) {
+        return repositorioUsuario.save(usuario);
     }
 
 
-    public void deletarUsuario(User user) {
-        repositoryUser.delete(user);
+    public void deletarUsuario(Usuario usuario) {
+        repositorioUsuario.delete(usuario);
     }
 }

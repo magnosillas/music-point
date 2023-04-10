@@ -1,6 +1,5 @@
 package br.edu.ufape.musicpoint.controller;
 
-import br.edu.ufape.musicpoint.basica.RatingAverage;
 import br.edu.ufape.musicpoint.basica.Review;
 import br.edu.ufape.musicpoint.fachada.MusicPoint;
 import org.springframework.beans.factory.annotation.Autowired;

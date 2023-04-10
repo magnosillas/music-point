@@ -2,8 +2,8 @@ package br.edu.ufape.musicpoint.api;
 
 
 import br.edu.ufape.musicpoint.basica.Album;
-import br.edu.ufape.musicpoint.basica.Artist;
-import br.edu.ufape.musicpoint.basica.Music;
+import br.edu.ufape.musicpoint.basica.Artista;
+import br.edu.ufape.musicpoint.basica.Musica;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -35,10 +35,10 @@ public class DeezerApi {
             String coverUrl = albumObject.getString("cover_medium");
             String trackList = albumObject.getString("tracklist");
 
-            JSONObject artistObject = albumObject.getJSONObject("artist");
-            Artist artist = new Artist(artistObject.getString("name"),artistObject.getString("picture_medium"));
+            JSONObject artistObject = albumObject.getJSONObject("artista");
+            Artista artista = new Artista(artistObject.getString("name"),artistObject.getString("picture_medium"));
 
-            Album album = new Album(albumTitle,albumRank,coverUrl);
+            Album album = new Album();
             albums.add(album);
 
         }
@@ -46,8 +46,8 @@ public class DeezerApi {
         return albums;
     }
 
-    public List<Music> getTracks(String trackListURL) throws Exception{
-        List<Music> musics= new ArrayList<>();
+    public List<Musica> getTracks(String trackListURL) throws Exception{
+        List<Musica> musicas = new ArrayList<>();
 
         HttpResponse<String> response = Unirest.get(trackListURL).asString();
 
@@ -59,14 +59,14 @@ public class DeezerApi {
 
             String title = musicObject.getString("title");
 
-            Music music = new Music(title);
-            musics.add(music);
+            Musica musica = new Musica(title);
+            musicas.add(musica);
 
 
         }
 
 
-        return musics;
+        return musicas;
     }
 
 

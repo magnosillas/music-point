@@ -3,15 +3,12 @@ package br.edu.ufape.musicpoint.basica;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Music extends Content{
-
+public class Musica extends Conteudo {
     private String name;
-
-
-    public Music() {
+    public Musica() {
     }
 
-    public Music(String name) {
+    public Musica(String name) {
         this.name = name;
     }
 

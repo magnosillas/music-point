@@ -1,15 +1,13 @@
 package br.edu.ufape.musicpoint.cadastro;
 
-import br.edu.ufape.musicpoint.basica.User;
-
-import java.util.List;
+import br.edu.ufape.musicpoint.basica.Usuario;
 
 public interface InterfaceCadastroUsuario {
-    User procurarIdUsuario(long id);
+    Usuario procurarIdUsuario(long id);
 
-    User adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID);
+    Usuario adicionarContaUsuario(Long usuarioID, Long seguirUsuarioID);
 
-    User atualizarContaUsuario(User user);
+    Usuario atualizarContaUsuario(Usuario usuario);
 
-    void deletarUsuario(User user);
+    void deletarUsuario(Usuario usuario);
 }

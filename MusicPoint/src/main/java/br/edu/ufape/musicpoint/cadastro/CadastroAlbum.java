@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class RegisterAlbum {
+public class CadastroAlbum {
     @Autowired
     private RepositorioAlbum repositoryAlbum;
 

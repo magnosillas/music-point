@@ -3,15 +3,14 @@ package br.edu.ufape.musicpoint.basica;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Artist extends Content{
+public class Artista extends Conteudo {
     private String name;
     private String photoURL;
 
-
-    public Artist() {
+    public Artista() {
     }
 
-    public Artist(String name, String photoURL) {
+    public Artista(String name, String photoURL) {
         this.name = name;
         this.photoURL = photoURL;
     }

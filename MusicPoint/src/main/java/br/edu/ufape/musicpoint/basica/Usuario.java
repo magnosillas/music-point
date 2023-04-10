@@ -2,27 +2,28 @@ package br.edu.ufape.musicpoint.basica;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "user")
-public class User {
+@Table(name = "usuario")
+public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
     private String email;
     private String password;
     private String photoURL;
     private String biography;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     @OneToMany
-    private List<User> seguindo;
+    private List<Usuario> seguindo;
     @OneToMany
-    private List<User> seguidores;
+    private List<Usuario> seguidores;
 
-    public User() {
+    public Usuario() {
     }
 
     public String getEmail() {
@@ -73,23 +74,23 @@ public class User {
         return id;
     }
 
-    public List<User> getSeguindo() {
+    public List<Usuario> getSeguindo() {
         if (seguindo == null)
-            seguindo = new ArrayList<User>();
+            seguindo = new ArrayList<Usuario>();
         return seguindo;
     }
 
-    public void setSeguindo(List<User> seguindo) {
+    public void setSeguindo(List<Usuario> seguindo) {
         this.seguindo = seguindo;
     }
 
-    public List<User> getSeguidores() {
+    public List<Usuario> getSeguidores() {
         if (seguidores == null)
-            seguidores = new ArrayList<User>();
+            seguidores = new ArrayList<Usuario>();
         return seguidores;
     }
 
-    public void setSeguidores(List<User> seguidores) {
+    public void setSeguidores(List<Usuario> seguidores) {
         this.seguidores = seguidores;
     }
 }

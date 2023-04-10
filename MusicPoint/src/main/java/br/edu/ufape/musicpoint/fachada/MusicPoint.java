@@ -8,33 +8,33 @@ import org.springframework.stereotype.Service;
 @Service
 public class MusicPoint {
     @Autowired
-    private RegisterAlbum registerAlbum;
+    private CadastroAlbum cadastroAlbum;
     @Autowired
-    private RegisterArtist registerArtist;
+    private CadastroArtista cadastroArtista;
     @Autowired
     private CadastroUsuario registerUser;
     @Autowired
-    private RegisterMusic registerMusic;
+    private CadastroMusica cadastroMusica;
     @Autowired
-    private RegisterReview registerReview;
+    private CadastroReview cadastroReview;
     @Autowired
-    private RegisterRatingAverage registerRatingAverage;
+    private CadastroNotaGeral cadastroNotaGeral;
 
 
     public Album save(Album album){
-        return registerAlbum.cadastrarAlbum(album);
+        return cadastroAlbum.cadastrarAlbum(album);
     }
-    public Artist save(Artist artist) {
-        return registerArtist.cadastrarArtista(artist);
+    public Artista save(Artista artista) {
+        return cadastroArtista.cadastrarArtista(artista);
     }
-    public User save(User user) {
-        return registerUser.cadastrarUsuario(user);
+    public Usuario save(Usuario usuario) {
+        return registerUser.cadastrarUsuario(usuario);
     }
-    public Music save(Music music) { return registerMusic.cadastrarMusica(music); }
-    public Review save(Review review) { return registerReview.cadastrarReview(review); }
-    public RatingAverage save(RatingAverage ratingAverageTotal) { return registerRatingAverage.cadastrarMediaNotas(ratingAverageTotal); }
+    public Musica save(Musica musica) { return cadastroMusica.cadastrarMusica(musica); }
+    public Review save(Review review) { return cadastroReview.cadastrarReview(review); }
+    public NotalGeral save(NotalGeral notalGeralTotal) { return cadastroNotaGeral.cadastrarMediaNotas(notalGeralTotal); }
 
-    public Album procurarAlbumId(long id){ return registerAlbum.procurarAlbumId(id);}
-    public User procurarUserId(long id){return registerUser.procurarIdUsuario(id);}
+    public Album procurarAlbumId(long id){ return cadastroAlbum.procurarAlbumId(id);}
+    public Usuario procurarUserId(long id){return registerUser.procurarIdUsuario(id);}
 
 }

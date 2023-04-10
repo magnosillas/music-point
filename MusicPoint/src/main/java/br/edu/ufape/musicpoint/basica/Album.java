@@ -5,26 +5,22 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-public class Album extends Content{
-
+public class Album extends Conteudo {
     private String name;
-
-    private int rank;
+    private String releaseDate;
+    private String genre;
     private String photoAlbumURL;
     @OneToMany
-    private List<Music> musics;
+    private List<Musica> musicas;
     @OneToOne
-    private Artist artist;
+    private Artista artista;
 
 
     public Album() {
     }
 
-    public Album(String name,int rank, String photoAlbumURL) {
-        this.name = name;
-        this.photoAlbumURL = photoAlbumURL;
-        this.rank = rank;
-    }
+
+
 
     public String getPhotoAlbumURL() {
         return photoAlbumURL;
@@ -34,20 +30,20 @@ public class Album extends Content{
         this.photoAlbumURL = photoAlbumURL;
     }
 
-    public List<Music> getMusics() {
-        return musics;
+    public List<Musica> getMusics() {
+        return musicas;
     }
 
-    public void setMusics(List<Music> musics) {
-        this.musics = musics;
+    public void setMusics(List<Musica> musicas) {
+        this.musicas = musicas;
     }
 
-    public Artist getArtist() {
-        return artist;
+    public Artista getArtist() {
+        return artista;
     }
 
-    public void setArtist(Artist artist) {
-        this.artist = artist;
+    public void setArtist(Artista artista) {
+        this.artista = artista;
     }
 
     public String getName() {
@@ -58,11 +54,19 @@ public class Album extends Content{
         this.name = name;
     }
 
-    public int getRank() {
-        return rank;
+    public String getReleaseDate() {
+        return releaseDate;
     }
 
-    public void setRank(int rank) {
-        this.rank = rank;
+    public void setReleaseDate(String releaseDate) {
+        this.releaseDate = releaseDate;
+    }
+
+    public String getGenre() {
+        return genre;
+    }
+
+    public void setGenre(String genre) {
+        this.genre = genre;
     }
 }
