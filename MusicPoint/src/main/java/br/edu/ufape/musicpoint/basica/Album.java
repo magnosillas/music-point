@@ -6,10 +6,9 @@ import java.util.List;
 
 @Entity
 public class Album extends Conteudo {
-    private String name;
-    private String releaseDate;
-    private String genre;
-    private String photoAlbumURL;
+    private String nome;
+    private String foto;
+    private int rank;
     @OneToMany
     private List<Musica> musicas;
     @OneToOne
@@ -19,15 +18,18 @@ public class Album extends Conteudo {
     public Album() {
     }
 
-
-
-
-    public String getPhotoAlbumURL() {
-        return photoAlbumURL;
+    public Album(String nome, String photoAlbumURL, int rank) {
+        this.nome = nome;
+        this.foto = photoAlbumURL;
+        this.rank = rank;
     }
 
-    public void setPhotoAlbumURL(String photoAlbumURL) {
-        this.photoAlbumURL = photoAlbumURL;
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String photoAlbumURL) {
+        this.foto = photoAlbumURL;
     }
 
     public List<Musica> getMusics() {
@@ -46,27 +48,19 @@ public class Album extends Conteudo {
         this.artista = artista;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String name) {
+        this.nome = name;
     }
 
-    public String getReleaseDate() {
-        return releaseDate;
+    public int getRank() {
+        return rank;
     }
 
-    public void setReleaseDate(String releaseDate) {
-        this.releaseDate = releaseDate;
-    }
-
-    public String getGenre() {
-        return genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 }

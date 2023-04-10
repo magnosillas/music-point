@@ -1,40 +1,38 @@
 package br.edu.ufape.musicpoint.basica;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.apache.catalina.User;
 
 @Entity
-public class Review {
-    @Id
-    private long id;
-    private String text;
+public class Review extends Postagem{
 
-    private String albumPhoto;
+    private String titulo;
+    @ManyToOne
+    private Conteudo conteudo;
 
     public Review() {
+        super();
     }
 
-    public String getText() {
-        return text;
+    public  Review(Usuario autor, String texto, String titulo, Conteudo conteudo){
+        super(autor,texto);
+        this.conteudo = conteudo;
+        this.titulo=titulo;
     }
 
-    public void setText(String text) {
-        this.text = text;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public String getAlbumPhoto() {
-        return albumPhoto;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
-    public void setAlbumPhoto(String albumPhoto) {
-        this.albumPhoto = albumPhoto;
+    public Conteudo getConteudo() {
+        return conteudo;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
+    public void setConteudo(Conteudo conteudo) {
+        this.conteudo = conteudo;
     }
 }

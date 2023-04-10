@@ -1,10 +1,12 @@
 package br.edu.ufape.musicpoint.basica;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "usuario")
@@ -18,12 +20,51 @@ public class Usuario {
     private String photoURL;
     private String biography;
 
-    @OneToMany
+    @ManyToMany
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Usuario> seguindo;
-    @OneToMany
-    private List<Usuario> seguidores;
+
+    private int seguidores;
 
     public Usuario() {
+
+    }
+
+    public Usuario(String username, String email, String password) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+    }
+
+    public boolean seguir(Usuario usuario)
+//            throws UserAlreadyFollowedException
+    {
+        if (seguindo.contains(usuario)){}
+//            throw new UserAlreadyFollowedException(this, usuario);
+        return seguindo.add(usuario);
+    }
+
+    public boolean unfollow(Usuario usuario)
+           // throws UserNotFollowedException
+    {
+        if (!seguindo.contains(usuario)) {
+            // throw new UserNotFollowedException(this, usuario);
+        }
+        return seguindo.remove(usuario);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Usuario outro = (Usuario) obj;
+        return seguidores == outro.seguidores && Objects.equals(seguindo, outro.seguindo)
+                && Objects.equals(id, outro.id) && username.equals(outro.username)
+                && email.equals(outro.email);
     }
 
     public String getEmail() {
@@ -84,13 +125,11 @@ public class Usuario {
         this.seguindo = seguindo;
     }
 
-    public List<Usuario> getSeguidores() {
-        if (seguidores == null)
-            seguidores = new ArrayList<Usuario>();
+    public int getSeguidores() {
         return seguidores;
     }
 
-    public void setSeguidores(List<Usuario> seguidores) {
+    public void setSeguidores(int seguidores) {
         this.seguidores = seguidores;
     }
 }

@@ -31,7 +31,8 @@ public class CadastroUsuario {
     }
 
 
-    public Usuario atualizarContaUsuario(Usuario usuario) {
+    public Usuario atualizarUsuario(Usuario usuario) {
+        //Talvez seja legal salvar a senha antiga
         return repositorioUsuario.save(usuario);
     }
 
