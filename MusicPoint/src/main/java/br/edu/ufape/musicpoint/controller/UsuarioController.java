@@ -1,7 +1,6 @@
 package br.edu.ufape.musicpoint.controller;
 
 import br.edu.ufape.musicpoint.basica.Usuario;
-import br.edu.ufape.musicpoint.cadastro.CadastroUsuario;
 import br.edu.ufape.musicpoint.exceptions.UsernameExistenteException;
 import br.edu.ufape.musicpoint.exceptions.UsernameInvalidoException;
 import br.edu.ufape.musicpoint.exceptions.UsuarioNaoEncontradoException;
@@ -21,7 +20,7 @@ public class UsuarioController {
 
 
     @PostMapping
-    public ResponseEntity<Usuario> createUser(@RequestBody Usuario usuario){
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
         try {
             return new ResponseEntity<Usuario>(musicPoint.save(usuario), HttpStatus.CREATED);
         } catch (UsernameExistenteException e) {
@@ -33,7 +32,7 @@ public class UsuarioController {
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<Usuario> findByIdUser(@PathVariable long id){
+    public ResponseEntity<Usuario> buscarPorId(@PathVariable long id){
         try {
             if (musicPoint.buscarUsuario(id) != null) {
                 return new ResponseEntity<Usuario>(musicPoint.buscarUsuario(id), HttpStatus.OK);

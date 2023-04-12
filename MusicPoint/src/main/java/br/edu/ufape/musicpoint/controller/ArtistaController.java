@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("musicpoint/api/v1")
+@RequestMapping("musicpoint/api/v1/artista")
 public class ArtistaController {
     @Autowired
     private MusicPoint musicPoint;
 
-    @PostMapping("artista")
+    @PostMapping
     public ResponseEntity<Artista> createArtist(@RequestBody Artista artista){
         Artista art = musicPoint.save(artista);
         return new ResponseEntity<Artista>(art, HttpStatus.CREATED) ;

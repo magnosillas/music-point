@@ -114,21 +114,23 @@ public class MusicPoint {
        return cadastroReview.atualizar(review);
     }
 
-    public void likePost(Review review) throws ReviewNaoEncontradoException {
-        Review review1 = cadastroReview.buscarPorId(review.getId());
-        review1.like();
+    public Review likePost(Long reviewId) throws ReviewNaoEncontradoException {
+        Review review = cadastroReview.buscarPorId(reviewId);
+        review.like();
         try {
-            atualizarReview(review1);
+            atualizarReview(review);
+            return review;
         } catch (NomeReviewInvalidoException | TextoReviewInvalidoException | MaxCaracteresReviewExcedidoException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void unlikePost(Review review) throws ReviewNaoEncontradoException {
-        Review review1 = cadastroReview.buscarPorId(review.getId());
-        review1.unlike();
+    public Review unlikePost(Long reviewId) throws ReviewNaoEncontradoException {
+        Review review = cadastroReview.buscarPorId(reviewId);
+        review.unlike();
         try {
-            atualizarReview(review1);
+            atualizarReview(review);
+            return review;
         } catch (NomeReviewInvalidoException | TextoReviewInvalidoException | MaxCaracteresReviewExcedidoException e) {
             throw new RuntimeException(e);
         }

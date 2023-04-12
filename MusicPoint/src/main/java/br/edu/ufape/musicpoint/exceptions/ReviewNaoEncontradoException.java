@@ -1,7 +1,7 @@
 package br.edu.ufape.musicpoint.exceptions;
 import br.edu.ufape.musicpoint.basica.Review;
 
-public class ReviewNaoEncontradoException extends ObjetoNaoEncotradoException {
+public class  ReviewNaoEncontradoException extends Exception {
     private Review review;
 
     public ReviewNaoEncontradoException() {

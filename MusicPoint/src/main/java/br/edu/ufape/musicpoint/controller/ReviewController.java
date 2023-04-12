@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("musicpoint/api/v1")
+@RequestMapping("musicpoint/api/v1/review")
 public class ReviewController {
     @Autowired
     private MusicPoint musicPoint;
 
-    @PostMapping("review")
-    public ResponseEntity<Review> createReview(@RequestBody Review review) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException {
+    @PostMapping
+    public ResponseEntity<Review> criarReview(@RequestBody Review review) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException {
         Review rvw = musicPoint.save(review);
         return new ResponseEntity<Review>(rvw, HttpStatus.CREATED);
     }
@@ -35,21 +35,19 @@ public class ReviewController {
         }
     }
 
-    @PatchMapping("like")
-    public ResponseEntity<Void> like (@RequestBody Review review) {
+    @PatchMapping("like/{reviewId}")
+    public ResponseEntity<Review> like (@PathVariable Long reviewId) {
         try {
-            musicPoint.likePost(review);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok(musicPoint.likePost(reviewId));
         } catch (ReviewNaoEncontradoException ex) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    @PatchMapping("unlike")
-    public ResponseEntity<Void> unlike (@RequestBody Review review) {
+    @PatchMapping("unlike/{reviewId}")
+    public ResponseEntity<Review> unlike (@PathVariable Long reviewId) {
         try {
-            musicPoint.unlikePost(review);
-            return ResponseEntity.noContent().build();
+            return ResponseEntity.ok(musicPoint.unlikePost(reviewId));
         } catch (ReviewNaoEncontradoException ex) {
             return ResponseEntity.notFound().build();
         }
