@@ -3,6 +3,9 @@ package br.edu.ufape.musicpoint.cadastro;
 import br.edu.ufape.musicpoint.basica.Comentario;
 import br.edu.ufape.musicpoint.basica.Postagem;
 import br.edu.ufape.musicpoint.basica.Usuario;
+import br.edu.ufape.musicpoint.exceptions.ComentarioInvalidoException;
+import br.edu.ufape.musicpoint.exceptions.ComentarioNaoEncontradoException;
+import br.edu.ufape.musicpoint.exceptions.MaxCaracteresComentarioExcedidoException;
 import br.edu.ufape.musicpoint.repositorio.RepositorioComentario;
 import jakarta.persistence.Entity;
 import jakarta.transaction.Transactional;
@@ -29,32 +32,32 @@ public class CadastroComentario implements InterfaceCadastroComentario {
 
 
     public Comentario cadastrar(Comentario comentario)
-//    throws InvalidCommentException, CommentMaxCharacterSizeExceededException
+    throws ComentarioInvalidoException, MaxCaracteresComentarioExcedidoException
     {
-//        if(comentario.getTexto().isEmpty() || comentario.getTexto().isBlank()) {
-//            throw new InvalidCommentException(comentario);
-//        }
-//        if(comentario.getTexto().length() > 700) {
-//            throw new CommentMaxCharacterSizeExceededException(comentario);
-//        }
+        if(comentario.getTexto().isEmpty() || comentario.getTexto().isBlank()) {
+            throw new ComentarioInvalidoException(comentario);
+        }
+        if(comentario.getTexto().length() > 700) {
+            throw new MaxCaracteresComentarioExcedidoException(comentario);
+        }
         return repositorioComentario.save(comentario);
     }
 
 
     public void deletar(Comentario comentario)
-//    throws ComentarioNaoEncontradoException
+    throws ComentarioNaoEncontradoException
     {
-//        buscarPeloId(comentario.getId());
+        buscarPeloId(comentario.getId());
         repositorioComentario.delete(comentario);
     }
 
 
     public Comentario buscarPeloId(Long id)
-//    throws ComentarioNaoEncontradoException
+    throws ComentarioNaoEncontradoException
     {
         Optional<Comentario> comentario = repositorioComentario.findById(id);
-//        if (comentario.isEmpty())
-//            throw new ComentarioNaoEncontradoException();
+        if (comentario.isEmpty())
+            throw new ComentarioNaoEncontradoException();
 
         return comentario.get();
     }
