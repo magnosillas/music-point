@@ -5,20 +5,28 @@ import br.edu.ufape.musicpoint.basica.Album;
 import br.edu.ufape.musicpoint.basica.Artista;
 import br.edu.ufape.musicpoint.basica.Musica;
 
+import br.edu.ufape.musicpoint.fachada.MusicPoint;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeezerApi {
-    public DeezerApi() {
-    }
 
+    private final MusicPoint musicPoint;
+
+    public DeezerApi(MusicPoint musicPoint) {
+        this.musicPoint = musicPoint;
+    }
 
     public List<Album> getTopAlbums() throws Exception {
         String url = "https://api.deezer.com/chart/0/albums?limit=100";
@@ -35,10 +43,11 @@ public class DeezerApi {
             String coverUrl = albumObject.getString("cover_medium");
             String trackList = albumObject.getString("tracklist");
 
-            JSONObject artistObject = albumObject.getJSONObject("artista");
+            JSONObject artistObject = albumObject.getJSONObject("artist");
             Artista artista = new Artista(artistObject.getString("name"),artistObject.getString("picture_medium"));
-
-            Album album = new Album();
+            musicPoint.save(artista);
+            List<Musica> musicas = getTracks(trackList);
+            Album album = new Album(albumTitle,coverUrl,albumRank, musicas,artista);
             albums.add(album);
 
         }
@@ -60,20 +69,12 @@ public class DeezerApi {
             String title = musicObject.getString("title");
 
             Musica musica = new Musica(title);
+            musicPoint.save(musica);
             musicas.add(musica);
 
-
         }
-
 
         return musicas;
     }
 
-
-
 }
-
-
-
-
-

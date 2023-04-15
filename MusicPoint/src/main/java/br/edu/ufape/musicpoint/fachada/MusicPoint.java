@@ -1,10 +1,13 @@
 package br.edu.ufape.musicpoint.fachada;
 
+import br.edu.ufape.musicpoint.api.DeezerApi;
 import br.edu.ufape.musicpoint.basica.*;
 import br.edu.ufape.musicpoint.cadastro.*;
 import br.edu.ufape.musicpoint.exceptions.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class MusicPoint {
@@ -21,6 +24,22 @@ public class MusicPoint {
     @Autowired
     private CadastroNotaGeral cadastroNotaGeral;
 
+
+
+
+    public void carregarAlbuns(){
+        DeezerApi deezerApi = new DeezerApi(this);
+        try {
+            List<Album> albums = deezerApi.getTopAlbums();
+            for(Album album : albums)
+
+
+                save(album);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Album save(Album album){
         return cadastroAlbum.cadastrarAlbum(album);

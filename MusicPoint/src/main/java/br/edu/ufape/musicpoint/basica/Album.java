@@ -15,6 +15,7 @@ public class Album extends Conteudo {
     private Artista artista;
 
 
+
     public Album() {
     }
 
@@ -22,6 +23,14 @@ public class Album extends Conteudo {
         this.nome = nome;
         this.foto = photoAlbumURL;
         this.rank = rank;
+    }
+
+    public Album(String nome, String foto, int rank, List<Musica> musicas, Artista artista) {
+        this.nome = nome;
+        this.foto = foto;
+        this.rank = rank;
+        this.musicas = musicas;
+        this.artista = artista;
     }
 
     public String getFoto() {
@@ -62,5 +71,21 @@ public class Album extends Conteudo {
 
     public void setRank(int rank) {
         this.rank = rank;
+    }
+
+    public List<Musica> getMusicas() {
+        return musicas;
+    }
+
+    public void setMusicas(List<Musica> musicas) {
+        this.musicas = musicas;
+    }
+
+    public Artista getArtista() {
+        return artista;
+    }
+
+    public void setArtista(Artista artista) {
+        this.artista = artista;
     }
 }

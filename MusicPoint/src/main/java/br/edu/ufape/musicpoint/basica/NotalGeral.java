@@ -10,16 +10,16 @@ public class NotalGeral {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nota;
+    private double nota;
 
     public NotalGeral() {
     }
 
-    public String getNota() {
+    public double getNota() {
         return nota;
     }
 
-    public void setNota(String generalGrade) {
+    public void setNota(double generalGrade) {
         this.nota = generalGrade;
     }
 

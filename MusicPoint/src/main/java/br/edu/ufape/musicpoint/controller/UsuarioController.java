@@ -46,7 +46,7 @@ public class UsuarioController {
 
 
 
-    @PostMapping(value = "seguir/id/{usuarioId}/{usuarioDestinoID}")
+    @PatchMapping(value = "seguir/id/{usuarioId}/{usuarioDestinoID}")
     public ResponseEntity<Usuario> seguirUsuarioId(@PathVariable long usuarioId, @PathVariable long usuarioDestinoID) {
         try {
             return ResponseEntity.ok(musicPoint.seguirUsuario(usuarioId,usuarioDestinoID));
@@ -55,7 +55,7 @@ public class UsuarioController {
         }
     }
 
-    @PostMapping(value = "seguir/username/{usuarioUsername}/{usuarioDestinoUsername}")
+    @PatchMapping(value = "seguir/username/{usuarioUsername}/{usuarioDestinoUsername}")
     public ResponseEntity<Usuario> seguirUsuarioUsername(@PathVariable String usuarioUsername, @PathVariable String usuarioDestinoUsername) {
         try {
             return ResponseEntity.ok(musicPoint.seguirUsuario(usuarioUsername,usuarioDestinoUsername));

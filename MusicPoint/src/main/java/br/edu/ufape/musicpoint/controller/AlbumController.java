@@ -30,4 +30,10 @@ public class AlbumController {
         }
     }
 
+    @PostMapping("carregar")
+    public ResponseEntity carregarAlbuns(){
+        musicPoint.carregarAlbuns();
+        return ResponseEntity.ok(0);
+    }
+
 }

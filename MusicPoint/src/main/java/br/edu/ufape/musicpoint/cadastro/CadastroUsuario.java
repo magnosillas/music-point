@@ -40,11 +40,11 @@ public class CadastroUsuario {
     }
 
     public Usuario buscarPorUsername(String username)
-//    throws UsuarioNaoEncontradoException
+    throws UsuarioNaoEncontradoException
     {
         Optional<Usuario> usuario = repositorioUsuario.findByUsername(username);
-//        if(usuario.isEmpty())
-//            throw new UsuarioNaoEncontradoException();
+        if(usuario.isEmpty())
+            throw new UsuarioNaoEncontradoException();
         return usuario.get();
     }
 
