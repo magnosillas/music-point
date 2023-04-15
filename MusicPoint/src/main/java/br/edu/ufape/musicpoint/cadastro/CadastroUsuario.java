@@ -21,8 +21,8 @@ public class CadastroUsuario {
     public Usuario cadastrar(Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException
     {
         if(usuario.getUsername() == null ||
-            usuario.getUsername().isBlank()||
-            usuario.getUsername().matches("[a-zA-Z0-9_.-]+"))
+            usuario.getUsername().isBlank() ||
+            !usuario.getUsername().matches("[a-zA-Z0-9_.-]+"))
             throw new UsernameInvalidoException(usuario);
         Optional<Usuario> usuarioSalvo = repositorioUsuario.findByUsername(usuario.getUsername());
         if (usuarioSalvo.isPresent() && !usuarioSalvo.get().getId().equals(usuario.getId()))
