@@ -2,12 +2,25 @@ import http from "@/common/http";
 
 class AlbumService {
     
-    list() {
-        return http.get("/album");
+    listar() {
+        return http.get("/album/lista");
     }
     
-    findById(id) {
+    buscarPorId(id) {
         return http.get("/album/" + id);
     }
+
+    buscarPorNome(nome) {
+        return http.get("/album/nome/" + nome);
+    }
+
+    carregarAlbums(){
+        return http.post("/album/carregar");
+    }
+
+    buscarPorArtistaId(id) {
+        return http.get("/album/artista/" + id);
+    }
+
 }
 export default new AlbumService();
