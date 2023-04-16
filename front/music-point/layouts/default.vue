@@ -19,12 +19,17 @@ export default {
 html,
 body {
   height: 100%;
-  background: rgb(64, 34, 250);
-  background: linear-gradient(115deg, rgba(64, 34, 250, 1) 32%, rgba(82, 161, 255, 1) 100%);
+  /* background: rgb(64, 34, 250);
+  background: linear-gradient(115deg, rgba(64, 34, 250, 1) 32%, rgba(82, 161, 255, 1) 100%); */
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
 }
 
 .v-card {
-  max-width: 330px;
+  width: 100vw;
+  height: 100vh;
   padding: 15px;
   color: black;
 }
@@ -40,7 +45,7 @@ body {
 
 .v-btn {
   margin-top: 20px;
-  color: black;
-  background-color: black;
+  color: whitesmoke;
+  background-color: white;
 }
 </style>

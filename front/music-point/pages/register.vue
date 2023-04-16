@@ -1,9 +1,9 @@
 <template>
-  <v-row no-gutters class="d-flex fill-height">
+  <v-row no-gutters class="d-flex fill-height" @submit.prevent="submit">
     <v-col cols="12" md="6" class="d-flex justify-center align-center">
       <v-card class="elevation-5" color="">
         <v-card-title class="text-center">
-          <h1 class="display-2 font-weight-bold">Registrar-se</h1>
+          <h1 class="display-5 font-weight-bold">Registrar-se</h1>
         </v-card-title>
         <v-card-text>
           <v-form class="form-signin" color="black">
@@ -28,6 +28,26 @@
 export default {
   // eslint-disable-next-line vue/component-definition-name-casing
   name: 'Register',
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    async submit() {
+      await fetch('http://localhost:8081/musicpoint/api/v1/usuario', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: this.email,
+          password: this.password
+        })
+      });
+
+      await this.$router.push('/login');
+    }
+  }
 }
 </script>
 
