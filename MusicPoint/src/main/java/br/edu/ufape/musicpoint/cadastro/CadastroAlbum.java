@@ -33,6 +33,14 @@ public class CadastroAlbum {
         return album.get();
     }
 
+    public List<Album> buscarPorNome(String nome)        throws AlbumNaoEncontradoException
+    {
+        Optional<List<Album>> album = Optional.ofNullable(repositoryAlbum.findByNome(nome));
+        if(album.isEmpty())
+            throw new AlbumNaoEncontradoException();
+        return album.get();
+    }
+
     public Album procurarAlbumId(long id)        throws AlbumNaoEncontradoException
     {
         Optional<Album> album = repositoryAlbum.findById(id);

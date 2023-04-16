@@ -4,23 +4,23 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Artista extends Conteudo {
-    private String name;
+    private String nome;
     private String photoURL;
 
     public Artista() {
     }
 
     public Artista(String name, String photoURL) {
-        this.name = name;
+        this.nome = name;
         this.photoURL = photoURL;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String name) {
+        this.nome = name;
     }
 
     public String getPhotoURL() {
