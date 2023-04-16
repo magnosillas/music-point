@@ -48,6 +48,10 @@ public class CadastroUsuario {
         return usuario.get();
     }
 
+    public List<Usuario> buscarTodos(){
+        return repositorioUsuario.findAll();
+    }
+
 
 
 

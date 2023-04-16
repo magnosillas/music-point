@@ -11,7 +11,7 @@ public class Album extends Conteudo {
     private int rank;
     @OneToMany
     private List<Musica> musicas;
-    @OneToOne
+    @ManyToOne
     private Artista artista;
 
 

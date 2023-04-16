@@ -1,5 +1,6 @@
 package br.edu.ufape.musicpoint.controller;
 
+import br.edu.ufape.musicpoint.basica.Album;
 import br.edu.ufape.musicpoint.basica.Review;
 import br.edu.ufape.musicpoint.exceptions.MaxCaracteresReviewExcedidoException;
 import br.edu.ufape.musicpoint.exceptions.NomeReviewInvalidoException;
@@ -10,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -33,6 +36,11 @@ public class ReviewController {
         } catch (NomeReviewInvalidoException | TextoReviewInvalidoException | MaxCaracteresReviewExcedidoException e) {
             return ResponseEntity.unprocessableEntity().build();
         }
+    }
+
+    @GetMapping("lista")
+    public ResponseEntity<List<Review>> buscarTodos(){
+        return new ResponseEntity<List<Review>>(musicPoint.buscarTodosReview(), HttpStatus.OK);
     }
 
     @PatchMapping("like/{reviewId}")

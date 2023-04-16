@@ -54,6 +54,10 @@ public class CadastroReview implements InterfaceReview{
         return repositorioReview.save(review);
     }
 
+    public List<Review> buscarTodos(){
+        return repositorioReview.findAll();
+    }
+
     @Override
     public Review atualizar(Review review) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException, ReviewNaoEncontradoException {
         Review reviewVelho = buscarPorId(review.getId());

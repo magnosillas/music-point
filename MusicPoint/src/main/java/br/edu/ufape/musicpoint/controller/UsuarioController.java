@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("musicpoint/api/v1/usuario")
@@ -20,7 +22,7 @@ public class UsuarioController {
 
 
     @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario){
+    public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario){
         try {
             return new ResponseEntity<Usuario>(musicPoint.save(usuario), HttpStatus.CREATED);
         } catch (UsernameExistenteException e) {
@@ -30,12 +32,61 @@ public class UsuarioController {
         }
 
     }
+    @PatchMapping
+    public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario) {
+        try {
+            return ResponseEntity.ok(musicPoint.atualizar(usuario));
+        } catch (UsuarioNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        } catch (UsernameExistenteException e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        } catch (UsernameInvalidoException e) {
+            return ResponseEntity.unprocessableEntity().build();
+        }
+    }
+
+    @GetMapping("lista")
+    public ResponseEntity<List<Usuario>> buscarTodos(){
+        return new ResponseEntity<List<Usuario>>(musicPoint.buscarTodosUsuarios(), HttpStatus.OK);
+    }
+
+    @DeleteMapping("username/{username}")
+    public ResponseEntity<Void> deletarUsername(@PathVariable String username) {
+        try {
+            musicPoint.deletar(username);
+            return ResponseEntity.noContent().build();
+        } catch (UsuarioNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @DeleteMapping("id/{usuarioid}")
+    public ResponseEntity<Void> deletarUsername(@PathVariable Long usuarioid) {
+        try {
+            musicPoint.deletar(usuarioid);
+            return ResponseEntity.noContent().build();
+        } catch (UsuarioNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
     @GetMapping("{id}")
     public ResponseEntity<Usuario> buscarPorId(@PathVariable long id){
         try {
             if (musicPoint.buscarUsuario(id) != null) {
                 return new ResponseEntity<Usuario>(musicPoint.buscarUsuario(id), HttpStatus.OK);
+            } else {
+                return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
+            }
+        } catch (UsuarioNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    @GetMapping("username/{username}")
+    public ResponseEntity<Usuario> buscarPorUsername(@PathVariable String username){
+        try {
+            if (musicPoint.buscarUsuario(username) != null) {
+                return new ResponseEntity<Usuario>(musicPoint.buscarUsuario(username), HttpStatus.OK);
             } else {
                 return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
             }
