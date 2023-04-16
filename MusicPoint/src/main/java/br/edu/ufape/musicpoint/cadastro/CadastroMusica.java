@@ -2,6 +2,7 @@ package br.edu.ufape.musicpoint.cadastro;
 
 import br.edu.ufape.musicpoint.basica.Artista;
 import br.edu.ufape.musicpoint.basica.Musica;
+import br.edu.ufape.musicpoint.exceptions.MusicaNaoEncontradaException;
 import br.edu.ufape.musicpoint.repositorio.RepositorioMusica;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,11 +26,11 @@ public class CadastroMusica {
     }
 
     public Musica buscarPorId(long id)
-            throws MusicaNaoEncontradoException
+            throws MusicaNaoEncontradaException
     {
         Optional<Musica> musica = repositorioMusica.findById(id);
         if(musica.isEmpty())
-            throw new MusicaNaoEncontradoException();
+            throw new MusicaNaoEncontradaException();
         return musica.get();
     }
 }

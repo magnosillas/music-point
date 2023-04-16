@@ -4,6 +4,7 @@ package br.edu.ufape.musicpoint.cadastro;
 import br.edu.ufape.musicpoint.basica.Artista;
 import br.edu.ufape.musicpoint.basica.Musica;
 import br.edu.ufape.musicpoint.basica.Usuario;
+import br.edu.ufape.musicpoint.exceptions.ArtistaNaoEncontradoException;
 import br.edu.ufape.musicpoint.exceptions.UsuarioNaoEncontradoException;
 import br.edu.ufape.musicpoint.repositorio.RepositorioArtista;
 import jakarta.transaction.Transactional;

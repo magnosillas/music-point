@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class MusicPoint {
+public class EMusicPoint {
     @Autowired
     private CadastroAlbum cadastroAlbum;
     @Autowired
@@ -170,7 +170,7 @@ public class MusicPoint {
         return cadastroAlbum.buscarTodos();
     }
 
-    public List<Album> buscarAlbumPorArtista(Artista artista){
+    public List<Album> buscarAlbumPorArtista(Artista artista) throws AlbumNaoEncontradoException {
         return cadastroAlbum.buscarPorArtista(artista);
     }
 
