@@ -52,16 +52,12 @@ public class CadastroUsuario {
         return repositorioUsuario.findAll();
     }
 
-
-
-
     public Usuario atualizar(Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException,UsuarioNaoEncontradoException
     {
         Usuario usuarioSalvo = buscarPorId(usuario.getId());
         usuario.setPassword(usuarioSalvo.getPassword());
         return cadastrar(usuario);
     }
-
 
     public void deletar(Usuario usuario) throws UsuarioNaoEncontradoException
     {

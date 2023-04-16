@@ -14,8 +14,6 @@ public class Album extends Conteudo {
     @ManyToOne
     private Artista artista;
 
-
-
     public Album() {
     }
 
