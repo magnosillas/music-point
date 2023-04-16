@@ -1,9 +1,11 @@
 package br.edu.ufape.musicpoint.cadastro;
 
 
+import br.edu.ufape.musicpoint.basica.Album;
 import br.edu.ufape.musicpoint.basica.Artista;
 import br.edu.ufape.musicpoint.basica.Musica;
 import br.edu.ufape.musicpoint.basica.Usuario;
+import br.edu.ufape.musicpoint.exceptions.AlbumNaoEncontradoException;
 import br.edu.ufape.musicpoint.exceptions.ArtistaNaoEncontradoException;
 import br.edu.ufape.musicpoint.exceptions.UsuarioNaoEncontradoException;
 import br.edu.ufape.musicpoint.repositorio.RepositorioArtista;
@@ -34,6 +36,15 @@ public class CadastroArtista {
             throw new ArtistaNaoEncontradoException();
         return artista.get();
     }
+
+    public List<Artista> buscarPorNome(String nome)        throws ArtistaNaoEncontradoException
+    {
+        Optional<List<Artista>> artista = Optional.ofNullable(repositorioArtista.findByNomeIgnoreCase(nome));
+        if(artista.isEmpty())
+            throw new ArtistaNaoEncontradoException();
+        return artista.get();
+    }
+
     public List<Artista> buscarTodos(){
         return repositorioArtista.findAll();
     }

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class EMusicPoint {
+public class MusicPoint {
     @Autowired
     private CadastroAlbum cadastroAlbum;
     @Autowired
@@ -26,7 +26,7 @@ public class EMusicPoint {
 
     ////////////////////// USUARIO //////////////////////////////
 
-    public Usuario save(Usuario usuario) throws UsernameExistenteException, UsernameInvalidoException {
+    public Usuario save(Usuario usuario) throws UsernameExistenteException, UsernameInvalidoException, EmailSendoUsadoException {
         return registerUser.cadastrar(usuario);
     }
 
@@ -42,8 +42,7 @@ public class EMusicPoint {
         return registerUser.buscarTodos();
     }
 
-    public Usuario atualizar (Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException,UsuarioNaoEncontradoException
-    {
+    public Usuario atualizar (Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException, UsuarioNaoEncontradoException, EmailSendoUsadoException {
         return registerUser.atualizar(usuario);
     }
 
@@ -60,8 +59,7 @@ public class EMusicPoint {
         deletar(buscarUsuario(username));
     }
 
-    public Usuario seguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioJaSeguidoException, UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException
-    {
+    public Usuario seguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioJaSeguidoException, UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException, EmailSendoUsadoException {
         if (usuario.seguir(seguindo)) {
             seguindo.setSeguidores(seguindo.getSeguidores() + 1);
             atualizar(usuario);
@@ -74,7 +72,7 @@ public class EMusicPoint {
     public Usuario seguirUsuario(Long usuarioId, Long seguindoId) throws UsuarioNaoEncontradoException, UsuarioJaSeguidoException  {
         try {
             return seguirUsuario(buscarUsuario(usuarioId), buscarUsuario(seguindoId));
-        } catch (UsernameExistenteException | UsernameInvalidoException e) {
+        } catch (UsernameExistenteException | UsernameInvalidoException | EmailSendoUsadoException e) {
             throw new RuntimeException(e);
         }
     }
@@ -82,12 +80,12 @@ public class EMusicPoint {
     public Usuario seguirUsuario(String usuarioUsername, String seguindoUsername) throws UsuarioNaoEncontradoException, UsuarioJaSeguidoException {
         try {
             return seguirUsuario(buscarUsuario(usuarioUsername), buscarUsuario(seguindoUsername));
-        } catch (UsernameExistenteException | UsernameInvalidoException e) {
+        } catch (UsernameExistenteException | UsernameInvalidoException | EmailSendoUsadoException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Usuario pararSeguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException, UsuarioNaoSeguidoException {
+    public Usuario pararSeguirUsuario(Usuario usuario, Usuario seguindo) throws UsuarioNaoEncontradoException, UsernameExistenteException, UsernameInvalidoException, UsuarioNaoSeguidoException, EmailSendoUsadoException {
         if (usuario.pararSeguir(seguindo)) {
             seguindo.setSeguidores(seguindo.getSeguidores() - 1);
             atualizar(usuario);
@@ -100,7 +98,7 @@ public class EMusicPoint {
     public Usuario pararSeguirUsuario(Long followingId, Long followedId) throws UsuarioNaoEncontradoException, UsuarioNaoSeguidoException {
         try {
             return pararSeguirUsuario(buscarUsuario(followingId), buscarUsuario(followedId));
-        } catch (UsernameExistenteException | UsernameInvalidoException e) {
+        } catch (UsernameExistenteException | UsernameInvalidoException | EmailSendoUsadoException e) {
             throw new RuntimeException(e);
         }
     }
@@ -108,10 +106,15 @@ public class EMusicPoint {
     public Usuario pararSeguirUsuario(String usuarioUsername, String seguindoUsername) throws UsuarioNaoEncontradoException, UsuarioNaoSeguidoException {
         try {
             return pararSeguirUsuario(buscarUsuario(usuarioUsername), buscarUsuario(seguindoUsername));
-        } catch (UsernameExistenteException | UsernameInvalidoException e) {
+        } catch (UsernameExistenteException | UsernameInvalidoException | EmailSendoUsadoException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public Usuario login(String email, String senha) throws UsuarioNaoEncontradoException, SenhaIncorretaException {
+        return registerUser.login(email,senha);
+    }
+
 
     ////////////////////// REVIEW //////////////////////////////
 
@@ -164,7 +167,7 @@ public class EMusicPoint {
         }
     }
 
-    public Album buscarAlbum(long id){ return cadastroAlbum.procurarAlbumId(id);}
+    public Album buscarAlbum(long id) throws AlbumNaoEncontradoException { return cadastroAlbum.procurarAlbumId(id);}
 
     public List<Album> buscarTodosAlbuns(){
         return cadastroAlbum.buscarTodos();
@@ -173,8 +176,10 @@ public class EMusicPoint {
     public List<Album> buscarAlbumPorArtista(Artista artista) throws AlbumNaoEncontradoException {
         return cadastroAlbum.buscarPorArtista(artista);
     }
-
-    public List<Album> buscarAlbumPorArtista(Long artistaId){
+    public List<Album> buscarAlbumPorNome(String nome) throws AlbumNaoEncontradoException {
+        return cadastroAlbum.buscarPorNome(nome);
+    }
+    public List<Album> buscarAlbumPorArtista(Long artistaId) throws ArtistaNaoEncontradoException, AlbumNaoEncontradoException {
         return buscarAlbumPorArtista(buscarArtista(artistaId));
     }
 
@@ -186,8 +191,12 @@ public class EMusicPoint {
         return cadastroArtista.buscarTodos();
     }
 
-    public Artista buscarArtista(Long id){
+    public Artista buscarArtista(Long id) throws ArtistaNaoEncontradoException {
         return cadastroArtista.buscarPorId(id);
+    }
+
+    public List<Artista> buscarArtistaPorNome(String nome) throws ArtistaNaoEncontradoException {
+        return cadastroArtista.buscarPorNome(nome);
     }
 
 

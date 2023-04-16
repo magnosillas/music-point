@@ -1,7 +1,8 @@
 package br.edu.ufape.musicpoint.controller;
 
-import br.edu.ufape.musicpoint.basica.Album;
 import br.edu.ufape.musicpoint.basica.Artista;
+import br.edu.ufape.musicpoint.exceptions.AlbumNaoEncontradoException;
+import br.edu.ufape.musicpoint.exceptions.ArtistaNaoEncontradoException;
 import br.edu.ufape.musicpoint.fachada.MusicPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,23 @@ public class ArtistaController {
     @GetMapping("lista")
     public ResponseEntity<List<Artista>> buscarTodos(){
         return new ResponseEntity<List<Artista>>(musicPoint.buscarTodosArtistas(), HttpStatus.OK);
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<Artista> buscarPorId(@PathVariable Long id){
+        try {
+            return new ResponseEntity<Artista>(musicPoint.buscarArtista(id), HttpStatus.OK);
+        } catch (ArtistaNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("nome/{nome}")
+    public ResponseEntity<List<Artista>> buscarPorNome(@PathVariable String nome){
+        try {
+            return new ResponseEntity<List<Artista>>(musicPoint.buscarArtistaPorNome(nome), HttpStatus.OK);
+        } catch (ArtistaNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }
