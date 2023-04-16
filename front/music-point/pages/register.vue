@@ -36,7 +36,7 @@ export default {
   },
   methods: {
     async submit() {
-      await fetch('http://localhost:8081/musicpoint/api/v1/usuario', {
+      await fetch('http://localhost:8081/musicpoint/api/v1', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
