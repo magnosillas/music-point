@@ -3,28 +3,24 @@
     "name": "inspire",
     "path": "/inspire",
     "component": "D:\\\\ws\\\\music-point\\\\front\\\\music-point\\\\pages\\\\inspire.vue",
-    "chunkName": "pages/inspire",
-    "_name": "_75e3542d"
+    "chunkName": "pages/inspire"
   },
   {
     "name": "login",
     "path": "/login",
     "component": "D:\\\\ws\\\\music-point\\\\front\\\\music-point\\\\pages\\\\login.vue",
-    "chunkName": "pages/login",
-    "_name": "_c748b808"
+    "chunkName": "pages/login"
   },
   {
     "name": "register",
     "path": "/register",
     "component": "D:\\\\ws\\\\music-point\\\\front\\\\music-point\\\\pages\\\\register.vue",
-    "chunkName": "pages/register",
-    "_name": "_4aa12360"
+    "chunkName": "pages/register"
   },
   {
     "name": "index",
     "path": "/",
     "component": "D:\\\\ws\\\\music-point\\\\front\\\\music-point\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_5a97fe36"
+    "chunkName": "pages/index"
   }
 ]

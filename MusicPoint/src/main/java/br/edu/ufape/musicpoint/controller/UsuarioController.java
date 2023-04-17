@@ -17,9 +17,9 @@ public class UsuarioController {
     @Autowired
     private MusicPoint musicPoint;
 
-
-
     @PostMapping
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @PatchMapping("/usuarios")
     public ResponseEntity<Usuario> criar(@RequestBody Usuario usuario){
         try {
             return new ResponseEntity<Usuario>(musicPoint.save(usuario), HttpStatus.CREATED);
@@ -30,7 +30,7 @@ public class UsuarioController {
         }
 
     }
-    @PatchMapping
+
     public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario) {
         try {
             return ResponseEntity.ok(musicPoint.atualizar(usuario));
@@ -59,6 +59,7 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
     }
+
     @DeleteMapping("id/{usuarioid}")
     public ResponseEntity<Void> deletarUsername(@PathVariable Long usuarioid) {
         try {

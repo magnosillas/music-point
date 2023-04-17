@@ -54,7 +54,6 @@ public class CadastroUsuario {
 
 
 
-
     public Usuario atualizar(Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException, UsuarioNaoEncontradoException, EmailSendoUsadoException {
         Usuario usuarioSalvo = buscarPorId(usuario.getId());
         usuario.setPassword(usuarioSalvo.getPassword());
