@@ -1,26 +1,37 @@
 [
   {
+    "name": "home",
+    "path": "/home",
+    "component": "C:\\\\Users\\\\Mágno\\\\Desktop\\\\Projeto POOO\\\\Projeto POO\\\\front\\\\music-point\\\\pages\\\\home.vue",
+    "chunkName": "pages/home",
+    "_name": "_ea932530"
+  },
+  {
     "name": "inspire",
     "path": "/inspire",
     "component": "C:\\\\Users\\\\Mágno\\\\Desktop\\\\Projeto POOO\\\\Projeto POO\\\\front\\\\music-point\\\\pages\\\\inspire.vue",
-    "chunkName": "pages/inspire"
+    "chunkName": "pages/inspire",
+    "_name": "_4527cd3e"
   },
   {
     "name": "login",
     "path": "/login",
     "component": "C:\\\\Users\\\\Mágno\\\\Desktop\\\\Projeto POOO\\\\Projeto POO\\\\front\\\\music-point\\\\pages\\\\login.vue",
-    "chunkName": "pages/login"
+    "chunkName": "pages/login",
+    "_name": "_2c07b3a0"
   },
   {
     "name": "register",
     "path": "/register",
     "component": "C:\\\\Users\\\\Mágno\\\\Desktop\\\\Projeto POOO\\\\Projeto POO\\\\front\\\\music-point\\\\pages\\\\register.vue",
-    "chunkName": "pages/register"
+    "chunkName": "pages/register",
+    "_name": "_579df6a8"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\Mágno\\\\Desktop\\\\Projeto POOO\\\\Projeto POO\\\\front\\\\music-point\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_20548319"
   }
 ]
