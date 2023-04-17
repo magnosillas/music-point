@@ -9,7 +9,7 @@ import br.edu.ufape.musicpoint.exceptions.TextoReviewInvalidoException;
 
 import java.util.List;
 
-public interface InterfaceReview {
+public interface InterfaceCadastroReview {
 
     List<Review> buscarPorAutor(Usuario usuario) throws ReviewNaoEncontradoException;
     List<Review> followingPosts(List<Usuario> seguindo) throws ReviewNaoEncontradoException;

@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CadastroUsuario {
+public class CadastroUsuario implements InterfaceCadastroUsuario{
     @Autowired
     private RepositorioUsuario repositorioUsuario;
 

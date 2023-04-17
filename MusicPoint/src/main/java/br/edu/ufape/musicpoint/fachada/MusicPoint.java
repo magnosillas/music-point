@@ -21,7 +21,7 @@ public class MusicPoint {
     @Autowired
     private CadastroMusica cadastroMusica;
     @Autowired
-    private CadastroReview cadastroReview;
+    private CadastroCadastroReview cadastroReview;
     @Autowired
     private CadastroNotaGeral cadastroNotaGeral;
 

@@ -1,6 +1,5 @@
 package br.edu.ufape.musicpoint.cadastro;
 
-import br.edu.ufape.musicpoint.basica.Comentario;
 import br.edu.ufape.musicpoint.basica.Review;
 import br.edu.ufape.musicpoint.basica.Usuario;
 import br.edu.ufape.musicpoint.exceptions.*;
@@ -14,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CadastroReview implements InterfaceReview{
+public class CadastroCadastroReview implements InterfaceCadastroReview {
     @Autowired
     private RepositorioReview repositorioReview;
 
