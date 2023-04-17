@@ -271,9 +271,4 @@ public class MusicPoint {
     public void deletarComentario (Long id) throws ComentarioNaoEncontradoException {
         cadastroComentario.deletar(buscarComentarioPorId(id));
     }
-
-
-
-
-
 }

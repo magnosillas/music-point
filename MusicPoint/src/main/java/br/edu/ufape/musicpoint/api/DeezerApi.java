@@ -5,6 +5,7 @@ import br.edu.ufape.musicpoint.basica.Album;
 import br.edu.ufape.musicpoint.basica.Artista;
 import br.edu.ufape.musicpoint.basica.Musica;
 
+import br.edu.ufape.musicpoint.exceptions.ArtistaNaoEncontradoException;
 import br.edu.ufape.musicpoint.fachada.MusicPoint;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -43,9 +44,18 @@ public class DeezerApi {
             String coverUrl = albumObject.getString("cover_medium");
             String trackList = albumObject.getString("tracklist");
 
+
+
             JSONObject artistObject = albumObject.getJSONObject("artist");
             Artista artista = new Artista(artistObject.getString("name"),artistObject.getString("picture_medium"));
-            musicPoint.save(artista);
+
+
+            try {
+                artista = musicPoint.buscarArtistaPorNome(artista.getNome());
+            } catch (ArtistaNaoEncontradoException e){
+                musicPoint.save(artista);
+            }
+
             List<Musica> musicas = getTracks(trackList);
             Album album = new Album(albumTitle,coverUrl,albumRank, musicas,artista);
             albums.add(album);

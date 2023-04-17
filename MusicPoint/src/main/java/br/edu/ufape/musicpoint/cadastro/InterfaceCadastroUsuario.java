@@ -17,7 +17,7 @@ public interface InterfaceCadastroUsuario {
 
     public void deletar(Usuario usuario) throws UsuarioNaoEncontradoException;
 
-    public Usuario buscarPorEmail(String email);
+    public Usuario buscarPorEmail(String email) throws UsuarioNaoEncontradoException;
 
     public Usuario login(String email, String password) throws UsuarioNaoEncontradoException, SenhaIncorretaException;
 
