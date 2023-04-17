@@ -10,7 +10,7 @@ public class ArtistaNaoEncontradoException extends ObjetoNaoEncontradoException 
     private Artista artista;
 
     public ArtistaNaoEncontradoException() {
-        super("Album");
+        super("Artista");
     }
 
     public ArtistaNaoEncontradoException(Artista artista) {

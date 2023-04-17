@@ -38,9 +38,9 @@ public class ArtistaController {
     }
 
     @GetMapping("nome/{nome}")
-    public ResponseEntity<List<Artista>> buscarPorNome(@PathVariable String nome){
+    public ResponseEntity<Artista> buscarPorNome(@PathVariable String nome){
         try {
-            return new ResponseEntity<List<Artista>>(musicPoint.buscarArtistaPorNome(nome), HttpStatus.OK);
+            return new ResponseEntity<Artista>(musicPoint.buscarArtistaPorNome(nome), HttpStatus.OK);
         } catch (ArtistaNaoEncontradoException e) {
             return ResponseEntity.notFound().build();
         }

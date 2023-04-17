@@ -4,6 +4,7 @@ import br.edu.ufape.musicpoint.api.DeezerApi;
 import br.edu.ufape.musicpoint.basica.*;
 import br.edu.ufape.musicpoint.cadastro.*;
 import br.edu.ufape.musicpoint.exceptions.*;
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,8 @@ public class MusicPoint {
     private CadastroReview cadastroReview;
     @Autowired
     private CadastroNotaGeral cadastroNotaGeral;
+
+
 
     ////////////////////// USUARIO //////////////////////////////
 
@@ -155,17 +158,29 @@ public class MusicPoint {
     public Album save(Album album){
         return cadastroAlbum.cadastrarAlbum(album);
     }
-
+    @PostConstruct
     public void carregarAlbuns(){
         DeezerApi deezerApi = new DeezerApi(this);
         try {
-            List<Album> albums = deezerApi.getTopAlbums();
-            for(Album album : albums)
-                save(album);
+            if(buscarTodosAlbuns().size() == 0) {
+                List<Album> albums = deezerApi.getTopAlbums();
+                for (Album album : albums)
+                    save(album);
+                System.out.println("babaca");
+                System.out.println("babaca");
+                System.out.println("babaca");
+                System.out.println("babaca");
+
+            }else {
+                System.out.println("Banco de dados carregado");
+
+            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+
 
     public Album buscarAlbum(long id) throws AlbumNaoEncontradoException { return cadastroAlbum.procurarAlbumId(id);}
 
@@ -195,7 +210,7 @@ public class MusicPoint {
         return cadastroArtista.buscarPorId(id);
     }
 
-    public List<Artista> buscarArtistaPorNome(String nome) throws ArtistaNaoEncontradoException {
+    public Artista buscarArtistaPorNome(String nome) throws ArtistaNaoEncontradoException {
         return cadastroArtista.buscarPorNome(nome);
     }
 

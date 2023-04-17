@@ -37,9 +37,9 @@ public class CadastroArtista {
         return artista.get();
     }
 
-    public List<Artista> buscarPorNome(String nome)        throws ArtistaNaoEncontradoException
+    public Artista buscarPorNome(String nome)        throws ArtistaNaoEncontradoException
     {
-        Optional<List<Artista>> artista = Optional.ofNullable(repositorioArtista.findByNomeIgnoreCase(nome));
+        Optional<Artista> artista = Optional.ofNullable(repositorioArtista.findByNomeIgnoreCase(nome));
         if(artista.isEmpty())
             throw new ArtistaNaoEncontradoException();
         return artista.get();
