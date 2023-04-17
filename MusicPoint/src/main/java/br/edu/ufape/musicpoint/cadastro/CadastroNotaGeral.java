@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Transactional
-public class CadastroNotaGeral {
+public class CadastroNotaGeral implements InterfaceCadastroNotaGeral{
     @Autowired
     private RepositorioNotaGeral repositorioNotaGeralTotal;
 

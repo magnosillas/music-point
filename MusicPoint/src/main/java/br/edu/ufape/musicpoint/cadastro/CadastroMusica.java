@@ -14,7 +14,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CadastroMusica {
+public class CadastroMusica implements InterfaceCadastroMusica{
     @Autowired
     private RepositorioMusica repositorioMusica;
 
