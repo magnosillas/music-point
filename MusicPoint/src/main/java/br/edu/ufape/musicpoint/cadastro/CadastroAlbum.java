@@ -2,7 +2,9 @@ package br.edu.ufape.musicpoint.cadastro;
 
 import br.edu.ufape.musicpoint.basica.Album;
 import br.edu.ufape.musicpoint.basica.Artista;
+import br.edu.ufape.musicpoint.basica.Usuario;
 import br.edu.ufape.musicpoint.exceptions.AlbumNaoEncontradoException;
+import br.edu.ufape.musicpoint.exceptions.UsuarioNaoEncontradoException;
 import br.edu.ufape.musicpoint.repositorio.RepositorioAlbum;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +15,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CadastroAlbum {
+public class CadastroAlbum implements InterfaceCadastroAlbum {
     @Autowired
     private RepositorioAlbum repositoryAlbum;
 
@@ -21,11 +23,17 @@ public class CadastroAlbum {
         return repositoryAlbum.save(album);
     }
 
-    public List<Album> buscarTodos(){
-        return repositoryAlbum.findAll();
+    public List<Album> buscarTodos() throws AlbumNaoEncontradoException {
+        List<Album> albums = repositoryAlbum.findAll();
+        if(albums.size() == 0 ){
+            throw new AlbumNaoEncontradoException();
+        }else{
+            return albums;
+        }
+
     }
 
-    public List<Album> buscarPorArtista(Artista artista)        throws AlbumNaoEncontradoException
+    public List<Album> buscarPorArtista(Artista artista) throws AlbumNaoEncontradoException
     {
         Optional<List<Album>> album = Optional.ofNullable(repositoryAlbum.findByArtista(artista));
         if(album.isEmpty())
@@ -35,7 +43,7 @@ public class CadastroAlbum {
 
     public List<Album> buscarPorNome(String nome)        throws AlbumNaoEncontradoException
     {
-        Optional<List<Album>> album = Optional.ofNullable(repositoryAlbum.findByNome(nome));
+        Optional<List<Album>> album = Optional.ofNullable(repositoryAlbum.findByNomeIgnoreCase(nome));
         if(album.isEmpty())
             throw new AlbumNaoEncontradoException();
         return album.get();

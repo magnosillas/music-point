@@ -45,7 +45,13 @@ public class CadastroArtista {
         return artista.get();
     }
 
-    public List<Artista> buscarTodos(){
-        return repositorioArtista.findAll();
+    public List<Artista> buscarTodos() throws ArtistaNaoEncontradoException {
+        List<Artista> artistas = repositorioArtista.findAll();
+        if(artistas.size() == 0 ){
+            throw new ArtistaNaoEncontradoException();
+        }else{
+            return artistas;
+        }
+
     }
 }

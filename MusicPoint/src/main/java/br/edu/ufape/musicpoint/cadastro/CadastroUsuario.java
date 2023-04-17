@@ -30,26 +30,27 @@ public class CadastroUsuario {
         return repositorioUsuario.save(usuario);
     }
 
-    public Usuario buscarPorId(long id)
-    throws UsuarioNaoEncontradoException
-    {
+    public Usuario buscarPorId(long id) throws UsuarioNaoEncontradoException {
         Optional<Usuario> usuario = repositorioUsuario.findById(id);
         if(usuario.isEmpty())
             throw new UsuarioNaoEncontradoException();
         return usuario.get();
     }
 
-    public Usuario buscarPorUsername(String username)
-    throws UsuarioNaoEncontradoException
-    {
+    public Usuario buscarPorUsername(String username) throws UsuarioNaoEncontradoException {
         Optional<Usuario> usuario = repositorioUsuario.findByUsername(username);
         if(usuario.isEmpty())
             throw new UsuarioNaoEncontradoException();
         return usuario.get();
     }
 
-    public List<Usuario> buscarTodos(){
-        return repositorioUsuario.findAll();
+    public List<Usuario> buscarTodos() throws UsuarioNaoEncontradoException {
+        List<Usuario> usuarios = repositorioUsuario.findAll();
+        if(usuarios.size() == 0 ){
+            throw new UsuarioNaoEncontradoException();
+        }else{
+            return usuarios;
+        }
     }
 
 

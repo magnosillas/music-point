@@ -17,7 +17,7 @@ public class MusicPoint {
     @Autowired
     private CadastroArtista cadastroArtista;
     @Autowired
-    private CadastroUsuario registerUser;
+    private CadastroUsuario cadastroUsuario;
     @Autowired
     private CadastroMusica cadastroMusica;
     @Autowired
@@ -25,33 +25,36 @@ public class MusicPoint {
     @Autowired
     private CadastroNotaGeral cadastroNotaGeral;
 
+    @Autowired
+    private CadastroComentario cadastroComentario;
+
 
 
     ////////////////////// USUARIO //////////////////////////////
 
     public Usuario save(Usuario usuario) throws UsernameExistenteException, UsernameInvalidoException, EmailSendoUsadoException {
-        return registerUser.cadastrar(usuario);
+        return cadastroUsuario.cadastrar(usuario);
     }
 
     public Usuario buscarUsuario(long id)  throws UsuarioNaoEncontradoException {
-        return registerUser.buscarPorId(id);
+        return cadastroUsuario.buscarPorId(id);
     }
 
     public Usuario buscarUsuario(String username) throws UsuarioNaoEncontradoException {
-        return registerUser.buscarPorUsername(username);
+        return cadastroUsuario.buscarPorUsername(username);
     }
 
-    public List<Usuario> buscarTodosUsuarios(){
-        return registerUser.buscarTodos();
+    public List<Usuario> buscarTodosUsuarios() throws UsuarioNaoEncontradoException {
+        return cadastroUsuario.buscarTodos();
     }
 
     public Usuario atualizar (Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException, UsuarioNaoEncontradoException, EmailSendoUsadoException {
-        return registerUser.atualizar(usuario);
+        return cadastroUsuario.atualizar(usuario);
     }
 
     public void deletar(Usuario usuario) throws UsuarioNaoEncontradoException {
         buscarUsuario(usuario.getId());
-        registerUser.deletar(usuario);
+        cadastroUsuario.deletar(usuario);
     }
 
     public void deletar(Long usuarioId) throws UsuarioNaoEncontradoException{
@@ -115,7 +118,7 @@ public class MusicPoint {
     }
 
     public Usuario login(String email, String senha) throws UsuarioNaoEncontradoException, SenhaIncorretaException {
-        return registerUser.login(email,senha);
+        return cadastroUsuario.login(email,senha);
     }
 
 
@@ -149,8 +152,20 @@ public class MusicPoint {
         }
     }
 
-    public List<Review> buscarTodosReview(){
+    public List<Review> buscarTodosReview() throws ReviewNaoEncontradoException {
         return cadastroReview.buscarTodos();
+    }
+
+    public Review buscarReviewPorId(Long id) throws ReviewNaoEncontradoException {
+        return cadastroReview.buscarPorId(id);
+    }
+
+    public List<Review> buscarReviewPorAutor(Usuario usuario) throws ReviewNaoEncontradoException {
+        return cadastroReview.buscarPorAutor(usuario);
+    }
+
+    public List<Review> buscarReviewPorAutores(List<Usuario> usuarios) throws ReviewNaoEncontradoException {
+        return cadastroReview.followingPosts(usuarios);
     }
 
     ////////////////////// ALBUM //////////////////////////////
@@ -184,7 +199,7 @@ public class MusicPoint {
 
     public Album buscarAlbum(long id) throws AlbumNaoEncontradoException { return cadastroAlbum.procurarAlbumId(id);}
 
-    public List<Album> buscarTodosAlbuns(){
+    public List<Album> buscarTodosAlbuns() throws AlbumNaoEncontradoException {
         return cadastroAlbum.buscarTodos();
     }
 
@@ -202,7 +217,7 @@ public class MusicPoint {
     public Artista save(Artista artista) {
         return cadastroArtista.cadastrarArtista(artista);
     }
-    public List<Artista> buscarTodosArtistas(){
+    public List<Artista> buscarTodosArtistas() throws ArtistaNaoEncontradoException {
         return cadastroArtista.buscarTodos();
     }
 
@@ -217,11 +232,45 @@ public class MusicPoint {
 
     ////////////////////// MUSICA //////////////////////////////
     public Musica save(Musica musica) { return cadastroMusica.cadastrarMusica(musica); }
-    public List<Musica> buscarTodasMusicas(){return cadastroMusica.buscarTodos();}
+    public List<Musica> buscarTodasMusicas() throws MusicaNaoEncontradaException {return cadastroMusica.buscarTodos();}
+    public Musica buscarMusicaPorId(Long id) throws MusicaNaoEncontradaException {
+        return cadastroMusica.buscarPorId(id);
+    }
+
+    public Musica buscarMusicaPorNome(String nome) throws MusicaNaoEncontradaException {
+        return cadastroMusica.buscarPorNome(nome);
+    }
 
     ////////////////////// NOTA GERAL //////////////////////////////
 
     public NotalGeral save(NotalGeral notalGeralTotal) { return cadastroNotaGeral.cadastrarMediaNotas(notalGeralTotal); }
+
+
+    ////////////////////// NOTA GERAL //////////////////////////////
+
+    public Comentario save(Comentario comentario) throws ComentarioInvalidoException, MaxCaracteresComentarioExcedidoException {
+        return cadastroComentario.cadastrar(comentario);
+    }
+
+    public List<Comentario> buscarComentarioPorPost(Long reviewid) throws ComentarioNaoEncontradoException, ReviewNaoEncontradoException {
+        return cadastroComentario.buscarPeloPost(buscarReviewPorId(reviewid));
+    }
+
+    public List<Comentario> buscarComentarioPorUsuario(Long usuarioId) throws UsuarioNaoEncontradoException, ComentarioNaoEncontradoException {
+        return cadastroComentario.buscarPeloAutor(buscarUsuario(usuarioId));
+    }
+
+    public Comentario buscarComentarioPorId(Long id) throws ComentarioNaoEncontradoException {
+        return cadastroComentario.buscarPorId(id);
+    }
+
+    public Comentario atualizarComentario(Comentario comentario) throws ComentarioInvalidoException, MaxCaracteresComentarioExcedidoException, ComentarioNaoEncontradoException {
+        return cadastroComentario.atualizar(comentario);
+    }
+
+    public void deletarComentario (Long id) throws ComentarioNaoEncontradoException {
+        cadastroComentario.deletar(buscarComentarioPorId(id));
+    }
 
 
 

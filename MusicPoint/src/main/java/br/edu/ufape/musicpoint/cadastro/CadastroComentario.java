@@ -1,14 +1,10 @@
 package br.edu.ufape.musicpoint.cadastro;
 
 import br.edu.ufape.musicpoint.basica.Comentario;
-import br.edu.ufape.musicpoint.basica.Postagem;
+import br.edu.ufape.musicpoint.basica.Review;
 import br.edu.ufape.musicpoint.basica.Usuario;
-import br.edu.ufape.musicpoint.exceptions.ComentarioInvalidoException;
-import br.edu.ufape.musicpoint.exceptions.ComentarioNaoEncontradoException;
-import br.edu.ufape.musicpoint.exceptions.MaxCaracteresComentarioExcedidoException;
+import br.edu.ufape.musicpoint.exceptions.*;
 import br.edu.ufape.musicpoint.repositorio.RepositorioComentario;
-import jakarta.persistence.Entity;
-import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +17,13 @@ public class CadastroComentario implements InterfaceCadastroComentario {
     @Autowired
     private RepositorioComentario repositorioComentario;
 
-    public List<Comentario> buscarPelaPostagem(Postagem post) {
-        return null;
-    }
-
-
-    public List<Comentario> buscarPeloAutor(Usuario autor) {
-        return null;
+    public List<Comentario> buscarPeloAutor(Usuario autor) throws ComentarioNaoEncontradoException {
+        List<Comentario> comentarios = repositorioComentario.findByAutor(autor);
+        if (comentarios.size() == 0) {
+            throw new ComentarioNaoEncontradoException();
+        } else {
+            return comentarios;
+        }
     }
 
 
@@ -44,15 +40,23 @@ public class CadastroComentario implements InterfaceCadastroComentario {
     }
 
 
-    public void deletar(Comentario comentario)
-    throws ComentarioNaoEncontradoException
+    public void deletar(Comentario comentario) throws ComentarioNaoEncontradoException
     {
-        buscarPeloId(comentario.getId());
+        buscarPorId(comentario.getId());
         repositorioComentario.delete(comentario);
     }
 
 
-    public Comentario buscarPeloId(Long id)
+    public Comentario atualizar(Comentario comentario) throws ComentarioNaoEncontradoException, ComentarioInvalidoException, MaxCaracteresComentarioExcedidoException {
+        Comentario comentarioAntigo = buscarPorId(comentario.getId());
+        comentario.setDataCriacao(comentarioAntigo.getDataCriacao());
+        comentario.setAutor(comentarioAntigo.getAutor());
+        comentario.setLikes(comentarioAntigo.getLikes());
+        comentario.setUnlikes(comentarioAntigo.getUnlikes());
+        return cadastrar(comentario);
+    }
+
+    public Comentario buscarPorId(Long id)
     throws ComentarioNaoEncontradoException
     {
         Optional<Comentario> comentario = repositorioComentario.findById(id);
@@ -60,5 +64,14 @@ public class CadastroComentario implements InterfaceCadastroComentario {
             throw new ComentarioNaoEncontradoException();
 
         return comentario.get();
+    }
+
+    public List<Comentario> buscarPeloPost(Review review) throws ComentarioNaoEncontradoException {
+        List<Comentario> comentarios = repositorioComentario.findByPost(review);
+        if (comentarios.size() == 0) {
+            throw new ComentarioNaoEncontradoException();
+        } else {
+            return comentarios;
+        }
     }
 }

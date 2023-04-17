@@ -47,7 +47,11 @@ public class UsuarioController {
 
     @GetMapping("lista")
     public ResponseEntity<List<Usuario>> buscarTodos(){
-        return new ResponseEntity<List<Usuario>>(musicPoint.buscarTodosUsuarios(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<List<Usuario>>(musicPoint.buscarTodosUsuarios(), HttpStatus.OK);
+        } catch (UsuarioNaoEncontradoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @DeleteMapping("username/{username}")
@@ -61,7 +65,7 @@ public class UsuarioController {
     }
 
     @DeleteMapping("id/{usuarioid}")
-    public ResponseEntity<Void> deletarUsername(@PathVariable Long usuarioid) {
+    public ResponseEntity<Void> deletar(@PathVariable Long usuarioid) {
         try {
             musicPoint.deletar(usuarioid);
             return ResponseEntity.noContent().build();

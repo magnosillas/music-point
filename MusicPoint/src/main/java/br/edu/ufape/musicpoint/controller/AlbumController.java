@@ -45,7 +45,11 @@ public class AlbumController {
 
     @GetMapping("lista")
     public ResponseEntity<List<Album>> buscarTodos(){
-        return new ResponseEntity<List<Album>>(musicPoint.buscarTodosAlbuns(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<List<Album>>(musicPoint.buscarTodosAlbuns(), HttpStatus.OK);
+        } catch (AlbumNaoEncontradoException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @GetMapping("artista/{artistaId}")

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RepositorioMusica extends JpaRepository<Musica, Long > {
+    public Musica findByNomeIgnoreCase(String nome);
 }

@@ -11,12 +11,13 @@ import java.util.List;
 
 public interface InterfaceReview {
 
-    List<Review> buscarPorAutor(Usuario usuario);
-    List<Review> followingPosts(List<Usuario> seguindo);
+    List<Review> buscarPorAutor(Usuario usuario) throws ReviewNaoEncontradoException;
+    List<Review> followingPosts(List<Usuario> seguindo) throws ReviewNaoEncontradoException;
 
     Review cadastrar(Review object) throws NomeReviewInvalidoException, TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException;
     Review atualizar(Review object) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException, ReviewNaoEncontradoException;
     void deletar(Review object) throws ReviewNaoEncontradoException;
     Review buscarPorId(Long id) throws ReviewNaoEncontradoException;
+    public List<Review> buscarTodos() throws ReviewNaoEncontradoException;
 
 }

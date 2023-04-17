@@ -26,7 +26,11 @@ public class ArtistaController {
 
     @GetMapping("lista")
     public ResponseEntity<List<Artista>> buscarTodos(){
-        return new ResponseEntity<List<Artista>>(musicPoint.buscarTodosArtistas(), HttpStatus.OK);
+        try {
+            return new ResponseEntity<List<Artista>>(musicPoint.buscarTodosArtistas(), HttpStatus.OK);
+        } catch (ArtistaNaoEncontradoException e) {
+            throw new RuntimeException(e);
+        }
     }
     @GetMapping("{id}")
     public ResponseEntity<Artista> buscarPorId(@PathVariable Long id){

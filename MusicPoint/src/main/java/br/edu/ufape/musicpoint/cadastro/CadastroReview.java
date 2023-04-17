@@ -1,15 +1,13 @@
 package br.edu.ufape.musicpoint.cadastro;
 
+import br.edu.ufape.musicpoint.basica.Comentario;
 import br.edu.ufape.musicpoint.basica.Review;
 import br.edu.ufape.musicpoint.basica.Usuario;
-import br.edu.ufape.musicpoint.exceptions.ReviewNaoEncontradoException;
+import br.edu.ufape.musicpoint.exceptions.*;
 import br.edu.ufape.musicpoint.repositorio.RepositorioReview;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import br.edu.ufape.musicpoint.exceptions.NomeReviewInvalidoException;
-import br.edu.ufape.musicpoint.exceptions.TextoReviewInvalidoException;
-import br.edu.ufape.musicpoint.exceptions.MaxCaracteresReviewExcedidoException;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,13 +27,23 @@ public class CadastroReview implements InterfaceReview{
     }
 
     @Override
-    public List<Review> buscarPorAutor(Usuario usuario) {
-        return repositorioReview.findByAutorOrderByDataCriacaoDesc(usuario);
+    public List<Review> buscarPorAutor(Usuario usuario) throws ReviewNaoEncontradoException {
+        List<Review> reviews = repositorioReview.findByAutorOrderByDataCriacaoDesc(usuario);
+        if (reviews.size() == 0) {
+            throw new ReviewNaoEncontradoException();
+        } else {
+            return reviews;
+        }
     }
 
     @Override
-    public List<Review> followingPosts(List<Usuario> seguindo) {
-        return repositorioReview.findByAutorInOrderByDataCriacaoDesc(seguindo);
+    public List<Review> followingPosts(List<Usuario> seguindo) throws ReviewNaoEncontradoException {
+        List<Review> reviews = repositorioReview.findByAutorInOrderByDataCriacaoDesc(seguindo);
+        if (reviews.size() == 0) {
+            throw new ReviewNaoEncontradoException();
+        } else {
+            return reviews;
+        }
     }
 
     @Override
@@ -54,14 +62,23 @@ public class CadastroReview implements InterfaceReview{
         return repositorioReview.save(review);
     }
 
-    public List<Review> buscarTodos(){
-        return repositorioReview.findAll();
+    public List<Review> buscarTodos() throws ReviewNaoEncontradoException {
+        List<Review> reviews = repositorioReview.findAll();
+        if (reviews.size() == 0) {
+            throw new ReviewNaoEncontradoException();
+        } else {
+            return reviews;
+        }
     }
 
     @Override
     public Review atualizar(Review review) throws TextoReviewInvalidoException, MaxCaracteresReviewExcedidoException, NomeReviewInvalidoException, ReviewNaoEncontradoException {
         Review reviewVelho = buscarPorId(review.getId());
         review.setDataCriacao(reviewVelho.getDataCriacao());
+        review.setAutor(reviewVelho.getAutor());
+        review.setLikes(reviewVelho.getLikes());
+        review.setUnlikes(reviewVelho.getUnlikes());
+        review.setConteudo(reviewVelho.getConteudo());
         return cadastrar(review);
     }
 
