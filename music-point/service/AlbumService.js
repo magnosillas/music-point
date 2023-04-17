@@ -14,9 +14,6 @@ class AlbumService {
         return http.get("/album/nome/" + nome);
     }
 
-    carregarAlbums(){
-        return http.post("/album/carregar");
-    }
 
     buscarPorArtistaId(id) {
         return http.get("/album/artista/" + id);
