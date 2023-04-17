@@ -1,7 +1,7 @@
 import http from "@/common/http";
 
 class ArtistaService {
-    listar() {
+    lista() {
         return http.get("/artista/lista");
     }
     buscarPorId(id) {
@@ -12,3 +12,4 @@ class ArtistaService {
     }
     
 }
+export default new ArtistaService();
