@@ -13,7 +13,8 @@
   <!-- icone profile -->
   <v-row class="d-flex justify-end">
     <v-avatar>
-      <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
+      <v-img :src="usuarioFoto" alt="User photo"/>
+
     </v-avatar>
   </v-row>
 </v-app-bar>
@@ -40,7 +41,8 @@
               id="search"
             >
             <template v-slot:item="{item}">
-              <v-btn text :to="`/review/${item.id}`">{{item.nome}}</v-btn>
+              <BotaoReview :album="item" @select-item="selecionarAlbum" @show-review-modal="showReviewModal" />
+
             </template>
             </v-autocomplete>
             
@@ -49,23 +51,27 @@
       </v-card-text>
       
       
-      <span class="text-h5 indigo--text text--accent-4 font-weight-bold arial-font">Postagens</span>
+      <div class="mt-5 ml-5 text-h5 indigo--text text--accent-4 font-weight-bold arial-font">Timeline</div>
    
           <!-- posts -->
-      <v-card class="width-50 mt-5 theme--flase">
+      <v-card class="width-50 mt-5 posts " color="undefined">
 
 
      <v-row>
       <v-col cols="2">
         
           <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" size="150" style="border-radius: 7px;" />
-       
-      </v-col>
-      <v-col cols="15">
-    <v-card-title>titulo</v-card-title>
-    <v-card-subtitle>autor | data</v-card-subtitle>
-    <v-card-subtitle>tipo(Album/Musica)</v-card-subtitle>
-    <v-card-text>texto</v-card-text>
+        </v-col>
+        <v-col cols="auto">
+          <v-card-title>nome do album</v-card-title>
+    <v-card-subtitle>autor | tipo</v-card-subtitle>
+  </v-col>
+      </v-row>
+      <v-row>
+      <v-col cols="a">
+    
+    <v-card-title class="mt-0">Titulo</v-card-title>
+    <v-card-text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti in voluptas provident obcaecati incidunt enim aliquid ratione, magnam unde expedita voluptate! Libero aperiam animi excepturi eligendi iste, fuga doloremque dolore.</v-card-text>
     <v-card-actions>
       <v-btn icon>
         <v-icon>mdi-thumb-up-outline</v-icon>
@@ -84,8 +90,9 @@
 
     </v-main>
     <div>
-    <BotaoReview @show-review-modal="showReviewModal" />
-    <CriarReview v-if="showModal" />
+    
+
+    <CriarReview v-if="showModal" :album="albumSelecionado" @hide-review-modal="hideReviewModal" />
   </div>
     <div class="overlay"></div>
   </v-app>
@@ -95,7 +102,7 @@
 </template>
 
 <script>
-import BotaoReview from '../components/BotaoReview.vue'
+import BotaoReview from '@/components/BotaoReview.vue'
 
 
 import CriarReview from "@/components/CriarReview.vue"
@@ -115,20 +122,51 @@ export default {
       albums: [],
       search: null,
 
+      albumSelecionado: null,
 
-      user: {
-        initials: 'JD',
-        fullName: 'John Doe',
-        email: 'john.doe@doe.com',
-      },
+      usuarioFoto: "https://cdn.vuetifyjs.com/images/john.jpg"
+      
+
     }),
     mounted(){
       this.getAlbums()
+
+          // Verifica se o objeto "user" existe no localStorage
+      if (localStorage.getItem('user')) {
+        // Obtém o objeto "user" do localStorage e converte para um objeto JavaScript
+        const user = JSON.parse(localStorage.getItem('user'));
+        
+        // Verifica se a propriedade "foto" existe no objeto "user"
+        if (Object.hasOwnProperty.call(user, 'photoURL')) {
+          // A propriedade "foto" existe, podemos acessá-la
+          const fotoDoUsuario = user.photoURL;
+          this.usuarioFoto = fotoDoUsuario;
+          if (fotoDoUsuario !== null) {
+            this.usuarioFoto = fotoDoUsuario;
+          }
+
+
+          console.log(fotoDoUsuario);
+        } else {
+          console.log('A propriedade "foto" não existe no objeto "user"');
+        }
+      } else {
+        console.log('O objeto "user" não existe no localStorage');
+        this.$router.push('/login')
+      }
+
     },
     methods: {
-      showReviewModal(){
-        this.showModal = true
-      },
+      showReviewModal(album) {
+      this.albumSelecionado = album;
+      this.showModal = true;
+    },
+      hideReviewModal() {
+      this.showModal = false;
+    },
+    selecionarAlbum(album) {
+    this.albumSelecionado = album;
+  },
 
       getAlbums(){
         AlbumService.listar()
@@ -162,6 +200,11 @@ v-app {
   right: 0;
   bottom: 0;
   left: 0;
+}
+
+.posts{
+  color: white;
+  background-color: #3214EE;
 }
 
 /* BLOCO COMPARTILHAR ALGO */

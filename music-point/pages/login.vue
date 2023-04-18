@@ -67,9 +67,11 @@ export default {
       UsuarioService.login(this.email, this.password)
         .then(response => {
           console.log(response.status)
-          if(response.status == 200){
-            alert("email:" + this.email + " senha:" + this.password + " logado com sucesso!")
-          this.$router.push('/home')
+          if(response.status === 201){
+            
+            const user = response.data
+            localStorage.setItem('user', JSON.stringify(user))
+            this.$router.push('/home')
           }
           
         })
