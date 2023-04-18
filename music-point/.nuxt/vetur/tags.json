@@ -1,6 +1,15 @@
 {
+  "BotaoReview": {
+    "description": "Auto imported from components/BotaoReview.vue"
+  },
+  "CriarReview": {
+    "description": "Auto imported from components/CriarReview.vue"
+  },
   "NuxtLogo": {
     "description": "Auto imported from components/NuxtLogo.vue"
+  },
+  "PostCard": {
+    "description": "Auto imported from components/PostCard.vue"
   },
   "Tutorial": {
     "description": "Auto imported from components/Tutorial.vue"

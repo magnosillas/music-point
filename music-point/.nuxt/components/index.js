@@ -1,4 +1,7 @@
+export { default as BotaoReview } from '../..\\components\\BotaoReview.vue'
+export { default as CriarReview } from '../..\\components\\CriarReview.vue'
 export { default as NuxtLogo } from '../..\\components\\NuxtLogo.vue'
+export { default as PostCard } from '../..\\components\\PostCard.vue'
 export { default as Tutorial } from '../..\\components\\Tutorial.vue'
 export { default as VuetifyLogo } from '../..\\components\\VuetifyLogo.vue'
 

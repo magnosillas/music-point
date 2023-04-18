@@ -29,7 +29,6 @@ body {
 
 .v-card {
   width: 100vw;
-  height: 100vh;
   padding: 15px;
   color: black;
 }
