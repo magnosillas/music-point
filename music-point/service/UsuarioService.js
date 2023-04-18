@@ -6,7 +6,7 @@ class UsuarioService {
         return http.post("/usuario", data);
     }
 
-    atualizar( data) {
+    atualizar(data) {
         return http.patch("/usuario", data);
     }
 

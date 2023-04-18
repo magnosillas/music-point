@@ -4,11 +4,12 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _ea932530 = () => interopDefault(import('..\\pages\\home.vue' /* webpackChunkName: "pages/home" */))
-const _4527cd3e = () => interopDefault(import('..\\pages\\inspire.vue' /* webpackChunkName: "pages/inspire" */))
-const _2c07b3a0 = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages/login" */))
-const _579df6a8 = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages/register" */))
-const _20548319 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
+const _3ebda100 = () => interopDefault(import('..\\pages\\home.vue' /* webpackChunkName: "pages/home" */))
+const _210dc26e = () => interopDefault(import('..\\pages\\inspire.vue' /* webpackChunkName: "pages/inspire" */))
+const _924934d0 = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages/login" */))
+const _68c53618 = () => interopDefault(import('..\\pages\\profile.vue' /* webpackChunkName: "pages/profile" */))
+const _03c4ac44 = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages/register" */))
+const _25987afe = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -23,23 +24,27 @@ export const routerOptions = {
 
   routes: [{
     path: "/home",
-    component: _ea932530,
+    component: _3ebda100,
     name: "home"
   }, {
     path: "/inspire",
-    component: _4527cd3e,
+    component: _210dc26e,
     name: "inspire"
   }, {
     path: "/login",
-    component: _2c07b3a0,
+    component: _924934d0,
     name: "login"
   }, {
+    path: "/profile",
+    component: _68c53618,
+    name: "profile"
+  }, {
     path: "/register",
-    component: _579df6a8,
+    component: _03c4ac44,
     name: "register"
   }, {
     path: "/",
-    component: _20548319,
+    component: _25987afe,
     name: "index"
   }],
 
