@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Conteudo {
+public class Conteudo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
