@@ -13,7 +13,7 @@
       <!-- icone profile -->
       <v-row class="d-flex justify-end">
         <v-avatar>
-          <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"></v-img>
+          <v-img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John"><Nuxt-link to="/profile"></Nuxt-link></v-img>
         </v-avatar>
       </v-row>
     </v-app-bar>

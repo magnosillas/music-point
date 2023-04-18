@@ -1,13 +1,15 @@
 <template>
   <v-container>
     <!-- HEADER -->
-    <v-app-bar :clipped-left="clipped" fixed class="mb-auto" color="#3214EE" app>
+    <v-app-bar :clipped-left="clipped" fixed class="navbar mb-auto" color="#3214EE" app>
       <div style="display: flex; align-items: center; justify-content: center;">
         <img src="~/assets/logo-poo.png" alt="logo music point" class="w-100 align-center">
-        <v-toolbar-title color="white">Music Point</v-toolbar-title>
+        <v-toolbar-title class="titulo" color="white">Music Point</v-toolbar-title>
       </div>
       <!-- ESPAÇAMENTO PARA POSSÍVEIS CONTEÚDOS -->
       <v-spacer></v-spacer>
+      <!-- LINK PARA HOME -->
+      <NuxtLink class="font" to="/home">Home</NuxtLink>
     </v-app-bar>
 
     <!-- ESPAÇAMENTO -->
@@ -29,12 +31,11 @@
               <p>Altere suas informações</p>
             </div>
             <v-spacer></v-spacer>
-            <div class="mr-2">
+            <div class="font">
               <span color="white">SEGUINDO</span>
               <span display="block">0</span>
             </div>
-            <v-divider vertical class="divisor" color="white" :rounded="8"></v-divider>
-            <div>
+            <div class="font">
               <span>SEGUIDORES</span>
               <span>0</span>
             </div>
@@ -52,7 +53,8 @@
                 <v-file-input v-model="fotoNova" :rules="rulesAvatar" accept="image/png, image/jpeg, image/bmp"
                   placeholder="Escolha uma foto" prepend-icon="mdi-camera" label="Escolha uma foto"
                   @change="fotoSelecionada"></v-file-input>
-                <v-btn color="indigo-darken-3" variant="tonal" @click="salvarAlteracoes">Salvar Alterações</v-btn>
+                <v-btn @click="salvarAlteracoes">Salvar
+                  Alterações</v-btn>
               </v-form>
             </v-card-text>
           </v-card>
@@ -113,8 +115,15 @@ v-app {
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500&display=swap');
 
+v-toolbar-title {
+  font-family: 'Fredoka';
+}
 
+.titulo {
+  font-family: 'Fredoka';
+}
 
 .positin-fixed {
   position: fixed;
@@ -147,12 +156,15 @@ body {
   margin-top: 50px;
 }
 
-.divisor {
-  font-weight: bold;
-  border-width: 1px;
-  margin: 0 10px;
-  color: aliceblue;
+.font {
+  font-size: 18px;
+  font-family: 'Montserrat';
+  margin-top: 10px;
+  margin: 5px;
+  color: white;
+  text-decoration: none;
 }
+
 
 .alterar-info {
   margin-left: 20px;
@@ -170,6 +182,12 @@ body {
   margin-top: 10px;
 }
 
+.biografia-texto {
+  font-size: 14px;
+  font-family: 'Montserrat';
+  margin: 5px;
+  color: white;
+}
 
 .avatar {
   margin: 20px;
