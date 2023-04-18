@@ -64,8 +64,15 @@ export default {
       UsuarioService.login(this.email, this.password)
         .then(response => {
           console.log(response.status)
+<<<<<<< HEAD
           if (response.status === 200) {
             alert("email:" + this.email + " senha:" + this.password + " logado com sucesso!")
+=======
+          if(response.status === 201){
+            
+            const user = response.data
+            localStorage.setItem('user', JSON.stringify(user))
+>>>>>>> 380fafa1681450a6237cd33a3d43090989e55bb2
             this.$router.push('/home')
           }
 
