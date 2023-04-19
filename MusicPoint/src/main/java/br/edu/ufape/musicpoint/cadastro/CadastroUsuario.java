@@ -58,6 +58,10 @@ public class CadastroUsuario implements InterfaceCadastroUsuario{
     public Usuario atualizar(Usuario usuario) throws UsernameInvalidoException, UsernameExistenteException, UsuarioNaoEncontradoException, EmailSendoUsadoException {
         Usuario usuarioSalvo = buscarPorId(usuario.getId());
         usuario.setPassword(usuarioSalvo.getPassword());
+        usuario.setSeguindo(usuarioSalvo.getSeguindo());
+        usuario.setSeguidores(usuarioSalvo.getSeguidores());
+        usuario.setUsername(usuarioSalvo.getUsername());
+        usuario.setEmail(usuarioSalvo.getEmail());
         return cadastrar(usuario);
     }
 
