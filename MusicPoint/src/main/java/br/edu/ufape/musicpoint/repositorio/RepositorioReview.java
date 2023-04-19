@@ -12,5 +12,6 @@ public interface RepositorioReview extends JpaRepository<Review, Long > {
 
     List<Review> findByAutorOrderByDataCriacaoDesc(Usuario author);
     List<Review> findByAutorInOrderByDataCriacaoDesc(List<Usuario> authors);
+    List<Review> findAllByOrderByDataCriacaoDesc();
 
 }

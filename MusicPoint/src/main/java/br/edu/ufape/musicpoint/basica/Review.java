@@ -8,24 +8,18 @@ public class Review extends Postagem{
 
     private String titulo;
     @ManyToOne
-    private Conteudo conteudo;
-    private String conteudoTipo;
+    private Album album;
+
     private int nota;
 
     public Review() {
         super();
     }
 
-    public  Review(Usuario autor, String texto, String titulo, Conteudo conteudo, int nota){
+    public  Review(Usuario autor, String texto, String titulo, Album album, int nota){
         super(autor,texto);
-        this.conteudo = conteudo;
-        if(conteudo instanceof Album){
-            this.conteudoTipo = "Álbum";
-        } else if (conteudo instanceof Musica) {
-            this.conteudoTipo = "Musica";
-        } else{
-            this.conteudoTipo = "Artista";
-        }
+        this.album = album;
+
         this.nota = nota;
         this.titulo=titulo;
     }
@@ -38,12 +32,12 @@ public class Review extends Postagem{
         this.nota = nota;
     }
 
-    public String getConteudoTipo() {
-        return conteudoTipo;
+    public Album getAlbum() {
+        return album;
     }
 
-    public void setConteudoTipo(String conteudoTipo) {
-        this.conteudoTipo = conteudoTipo;
+    public void setAlbum(Album album) {
+        this.album = album;
     }
 
     public String getTitulo() {
@@ -54,11 +48,5 @@ public class Review extends Postagem{
         this.titulo = titulo;
     }
 
-    public Conteudo getConteudo() {
-        return conteudo;
-    }
 
-    public void setConteudo(Conteudo conteudo) {
-        this.conteudo = conteudo;
-    }
 }

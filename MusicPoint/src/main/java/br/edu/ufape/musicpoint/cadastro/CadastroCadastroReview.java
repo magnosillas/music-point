@@ -62,7 +62,7 @@ public class CadastroCadastroReview implements InterfaceCadastroReview {
     }
 
     public List<Review> buscarTodos() throws ReviewNaoEncontradoException {
-        List<Review> reviews = repositorioReview.findAll();
+        List<Review> reviews = repositorioReview.findAllByOrderByDataCriacaoDesc();
         if (reviews.size() == 0) {
             throw new ReviewNaoEncontradoException();
         } else {
@@ -77,7 +77,7 @@ public class CadastroCadastroReview implements InterfaceCadastroReview {
         review.setAutor(reviewVelho.getAutor());
         review.setLikes(reviewVelho.getLikes());
         review.setUnlikes(reviewVelho.getUnlikes());
-        review.setConteudo(reviewVelho.getConteudo());
+        review.setAlbum(reviewVelho.getAlbum());
         return cadastrar(review);
     }
 

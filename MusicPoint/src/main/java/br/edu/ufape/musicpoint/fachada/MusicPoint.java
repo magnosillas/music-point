@@ -177,7 +177,7 @@ public class MusicPoint {
     public void carregarAlbuns(){
         DeezerApi deezerApi = new DeezerApi(this);
         try {
-            if(buscarTodosAlbuns().size() == 0) {
+            if(true) {
                 List<Album> albums = deezerApi.getTopAlbums();
                 for (Album album : albums)
                     save(album);
