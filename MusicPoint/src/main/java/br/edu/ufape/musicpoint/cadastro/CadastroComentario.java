@@ -50,6 +50,7 @@ public class CadastroComentario implements InterfaceCadastroComentario {
     public Comentario atualizar(Comentario comentario) throws ComentarioNaoEncontradoException, ComentarioInvalidoException, MaxCaracteresComentarioExcedidoException {
         Comentario comentarioAntigo = buscarPorId(comentario.getId());
         comentario.setDataCriacao(comentarioAntigo.getDataCriacao());
+
         comentario.setAutor(comentarioAntigo.getAutor());
         comentario.setLikes(comentarioAntigo.getLikes());
         comentario.setUnlikes(comentarioAntigo.getUnlikes());

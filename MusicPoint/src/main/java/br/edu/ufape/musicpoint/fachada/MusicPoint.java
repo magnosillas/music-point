@@ -21,10 +21,7 @@ public class MusicPoint {
     @Autowired
     private CadastroMusica cadastroMusica;
     @Autowired
-    private CadastroCadastroReview cadastroReview;
-    @Autowired
-    private CadastroNotaGeral cadastroNotaGeral;
-
+    private CadastroReview cadastroReview;
     @Autowired
     private CadastroComentario cadastroComentario;
 
@@ -168,28 +165,32 @@ public class MusicPoint {
         return cadastroReview.followingPosts(usuarios);
     }
 
+    public void deletar(Review review) throws ReviewNaoEncontradoException {
+        buscarReviewPorId(review.getId());
+        cadastroReview.deletar(review);
+    }
+
+    public void deletarId(Long reviewId) throws ReviewNaoEncontradoException {
+        deletar(buscarReviewPorId(reviewId));
+    }
+
     ////////////////////// ALBUM //////////////////////////////
 
     public Album save(Album album){
         return cadastroAlbum.cadastrarAlbum(album);
     }
+    //Método que pega as informações de Album, Música e Artista e coloca no banco de dados
     @PostConstruct
     public void carregarAlbuns(){
         DeezerApi deezerApi = new DeezerApi(this);
         try {
-            if(true) {
                 List<Album> albums = deezerApi.getTopAlbums();
-                for (Album album : albums)
+                for (Album album : albums) {
                     save(album);
-                System.out.println("babaca");
-                System.out.println("babaca");
-                System.out.println("babaca");
-                System.out.println("babaca");
+                }
 
-            }else {
                 System.out.println("Banco de dados carregado");
 
-            }
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -241,12 +242,10 @@ public class MusicPoint {
         return cadastroMusica.buscarPorNome(nome);
     }
 
-    ////////////////////// NOTA GERAL //////////////////////////////
-
-    public NotalGeral save(NotalGeral notalGeralTotal) { return cadastroNotaGeral.cadastrarMediaNotas(notalGeralTotal); }
 
 
-    ////////////////////// NOTA GERAL //////////////////////////////
+
+    ////////////////////// Comentario //////////////////////////////
 
     public Comentario save(Comentario comentario) throws ComentarioInvalidoException, MaxCaracteresComentarioExcedidoException {
         return cadastroComentario.cadastrar(comentario);

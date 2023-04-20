@@ -4,6 +4,8 @@ package br.edu.ufape.musicpoint.basica;
 import jakarta.persistence.*;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Entity
@@ -15,13 +17,19 @@ public abstract class Postagem {
     @ManyToOne
     private Usuario autor;
     private String texto;
-    private Instant dataCriacao;
+    private LocalDateTime dataCriacao;
+    private String dataFormatada;
     private int likes;
     private int unlikes;
 
     public Postagem() {
-        this.dataCriacao = Instant.now();
+        this.dataCriacao = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        this.dataFormatada = dataCriacao.format(formatter);
+
     }
+
+
 
     public Postagem(Usuario autor, String texto) {
         this();
@@ -63,11 +71,11 @@ public abstract class Postagem {
         this.texto = texto;
     }
 
-    public Instant getDataCriacao() {
+    public LocalDateTime getDataCriacao() {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Instant dataCriacao) {
+    public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
 
@@ -85,5 +93,12 @@ public abstract class Postagem {
 
     public void setUnlikes(int unlikes) {
         this.unlikes = unlikes;
+    }
+    public String getDataFormatada() {
+        return dataFormatada;
+    }
+
+    public void setDataFormatada(String dataFormatada) {
+        this.dataFormatada = dataFormatada;
     }
 }

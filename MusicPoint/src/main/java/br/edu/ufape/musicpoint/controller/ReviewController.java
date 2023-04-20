@@ -63,7 +63,16 @@ public class ReviewController {
         }
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> deletar(@PathVariable Long id){
+        try {
+            musicPoint.deletarId(id);
+            return ResponseEntity.noContent().build();
+        } catch (ReviewNaoEncontradoException e) {
+            return ResponseEntity.notFound().build();
+        }
 
+    }
 
     @PatchMapping("like/{reviewId}")
     public ResponseEntity<Review> like (@PathVariable Long reviewId) {

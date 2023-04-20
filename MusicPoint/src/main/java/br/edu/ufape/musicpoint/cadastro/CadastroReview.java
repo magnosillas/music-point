@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CadastroCadastroReview implements InterfaceCadastroReview {
+public class CadastroReview implements InterfaceCadastroReview {
     @Autowired
     private RepositorioReview repositorioReview;
 
@@ -85,5 +85,13 @@ public class CadastroCadastroReview implements InterfaceCadastroReview {
     public void deletar(Review review) throws ReviewNaoEncontradoException {
         buscarPorId(review.getId());
         repositorioReview.delete(review);
+    }
+
+    public RepositorioReview getRepositorioReview() {
+        return repositorioReview;
+    }
+
+    public void setRepositorioReview(RepositorioReview repositorioReview) {
+        this.repositorioReview = repositorioReview;
     }
 }

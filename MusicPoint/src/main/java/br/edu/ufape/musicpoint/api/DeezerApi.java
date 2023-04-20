@@ -30,7 +30,7 @@ public class DeezerApi {
     }
 
     public List<Album> getTopAlbums() throws Exception {
-        String url = "https://api.deezer.com/chart/0/albums?limit=100";
+        String url = "https://api.deezer.com/chart/0/albums?limit=150";
         HttpResponse<String> response = Unirest.get(url).asString();
 
         JSONObject jsonObject = new JSONObject(response.getBody());

@@ -30,7 +30,7 @@ public class UsuarioController {
         }
 
     }
-
+    @PatchMapping
     public ResponseEntity<Usuario> atualizar(@RequestBody Usuario usuario) {
         try {
             return ResponseEntity.ok(musicPoint.atualizar(usuario));
